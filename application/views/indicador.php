@@ -5,12 +5,12 @@
          <center>SELECCIONAR SECTOR(ES)</center>
     <div class="panel panel-primary">
             <div class="panel-body">
-                
                   <form id="form-sector" >
 <!--                  <div style="overflow: auto; height:350px; width: 100%;">-->
                       <table class="table table-first-column-number data-table display full">  
                           <thead>
                               <tr>
+                                  <th></th>
                                   <th></th>
                                   <th></th>
                               </tr>
@@ -26,6 +26,9 @@
                               </td> 
                               <td>
                                   <?php echo $value->nombresector; ?>
+                              </td>
+                              <td hidden="">
+                                  <?php echo $value->sigla; ?>
                               </td>
                           </tr>
         

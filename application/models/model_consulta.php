@@ -22,8 +22,6 @@ class Model_Consulta extends CI_Model {
     }    
     public function listIndiSec(){
         
-        
-        
         $valor = $_POST['listaSector'];
         //print_r($valor); exit;
         //$data = $this->input->post();                

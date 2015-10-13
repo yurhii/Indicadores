@@ -19,10 +19,10 @@
     
     $(function(){
        $('table.data-table.full').dataTable( {
-            "iDisplayLength": 4,
-            "aLengthMenu": [4, 6, 10],
+            "iDisplayLength": 5,
+            "aLengthMenu": false,//[5, 6, 10],
             "bPaginate": true,
-            "bLengthChange": true,
+            "bLengthChange": false,
             "bFilter": true,
             "bSort": true,
             "bInfo": true,

@@ -1,7 +1,6 @@
 $(document).on("ready", inicio);
 function inicio(){
     $("#btnListar").click(listar_indicadores);
-    
 }
 function listar_indicadores(){
     $.ajax({
@@ -10,16 +9,23 @@ function listar_indicadores(){
         data: $("#form-sector").serialize(),
         success:function(respuesta){
         //alert(respuesta);        
-            var registros = eval(respuesta);	            
-                html ="<table class='table table-responsive table-bordered'><thead>";
-                html +="<tr><th>ID</th><th>NOMBRE</th><th></th></tr>";
+            var registros = eval(respuesta);
+            
+            if(registros != ''){
+                
+                html ="<table class='data-table full'><thead>";
+                html +="<tr><th></th><th>NOMBRE</th><th></th></tr>";
                 html +="</thead><tbody>";
                 for (var i = 0; i < registros.length; i++) {
-                    html +="<tr><td>"+registros[i]["idformindicador"]+"</td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["sigla"]+"</td></tr>";
+                    html +="<tr><td><input type='checkbox' name='listaSector[]' value='"+registros[i]["idformindicador"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["sigla"]+"</td></tr>";
                 };
                 html +="</tbody></table>";
                 $("#listaIndicadores").html(html);
-            
+            }else{
+                //alert('Seleccione Sector');
+                html = "<table>No existe Indicadores</table>";
+                $("#listaIndicadores").html(html);
+            }
         }
     });
 }

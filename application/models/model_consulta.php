@@ -22,14 +22,22 @@ class Model_Consulta extends CI_Model {
     }    
     public function listIndiSec(){
         
-        $data = $this->input->post();        
+        
+        
+        $valor = $_POST['listaSector'];
+        //print_r($valor); exit;
+        //$data = $this->input->post();                
         $lista = array();
-        foreach ($data as $value) {
-            foreach ($value as $valor) {
-                $lista[] = $valor;                
-            }
+        //print_r($lista); exit;
+        foreach ($valor as $value) {
+            $lista[] = $value;
+            //foreach ($value as $valor) {
+                //$lista[] = $valor;                
+            //}
         }
+        
         $ids = implode(',', $lista);        
+        //echo $ids; exit;
         $query = $this->db->query("
             SELECT a.idformindicador, b.idrepterritorial,b.nombre as localidad, b.codigo ,c.nombre as nombreindicador, e.idfuenteinformacion, fi.nombre,
 	g.sigla,date_part('year',e.fechadatoini)::CHARACTER VARYING as periodo
@@ -46,23 +54,8 @@ class Model_Consulta extends CI_Model {
                 e.idfuenteinformacion, c.formula,a.idrepterritorial,e.idfuenteinformacion,
                 e.idmetodocaptura,g.sigla,e.fechadatoini;
                  ");
-        return $query->result();          
+        //print_r($query->result());exit;
+        return $query->result();   
+        
     }
-    /*
-    SELECT a.idformindicador, b.idrepterritorial,b.nombre, b.codigo ,c.nombre as nombreindicador, e.idfuenteinformacion, fi.nombre,
-	g.sigla,date_part('year',e.fechadatoini)::CHARACTER VARYING as periodo
-	FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
-	WHERE a.idrepterritorial = b.idrepterritorial	
-	AND a.idformula = c.idformula
-	AND a.idformindicador = e.idformindicador
-	AND c.idformula = f.idformula
-	AND f.idunidadmedida = g.idunidadmedida
-	and b.idrepterritorial = a.idrepterritorial
-	and fi.idfuenteinformacion = e.idfuenteinformacion		
-	and fi.idfuenteinformacion in (71)
-	GROUP BY fi.nombre,a.idformindicador,b.idrepterritorial,b.nombre,b.codigo,c.nombre,
-					e.idfuenteinformacion, c.formula,a.idrepterritorial,e.idfuenteinformacion,
-					e.idmetodocaptura,g.sigla,e.fechadatoini;
-     */
-
 }

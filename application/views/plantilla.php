@@ -5,33 +5,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">        
 	<link href="<?php echo base_url('public/css/micss.css') ?>" rel="stylesheet" media="screen">
         <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
+        <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
+        
+        
         <script src="<?php echo base_url('public/js/bootstrap.js') ?>"></script>
-        <script src="<?php //echo base_url('public/js/jquery-2.1.1.min.js') ?>"></script>
-        
-        
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-        
-        <script type="text/javascript">
-		$(document).ready(function(){
-			$("#formulario_ajax").submit(function(){
-				$.ajax({
-					url: $(this).attr("action"),
-					type: $(this).attr("method"),
-					data: $(this).serialize(),
-					beforeSend:function(){
-						$(".loader").show();
-					},
-                    success:function(){
-                        $(".loader").fadeOut("slow");
-                    }
-				});
- 
-			});
-			return false;
-		});
-		</script>
+        <script type="text/javascript" src="<?php echo base_url('public/jquery.js') ?>"></script>
+        <script src="<?php echo base_url('public/js/jquery.dataTables.min.js')?>"></script>
+        <script src="<?php echo base_url('public/js/jquery.dataTables.bootstrap.js')?>"></script>
 
-            
+                
+
+<script type="text/javascript">
+    
+    $(function(){
+       $('table.data-table.full').dataTable( {
+            "iDisplayLength": 4,
+            "aLengthMenu": [4, 6, 10],
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true,
+            "sPaginationType": "full_numbers",
+            "sDom": '<""f>t<"F"lp>',
+            "sPaginationType": "bootstrap"
+        });
+    });
+</script>	
+        
     </head>
 
     <body style="margin-bottom: 0; padding: 0;">   
@@ -74,15 +76,12 @@
             
         <footer>
             <center>
-                <p><h4>
-                    <?php //echo $this->session->userdata('usuario').' ('.$this->session->userdata('nombre_per').')'; ?> 
+                <h4>                   
                     </h4> &copy; Indicadores - 2015
-                    <br>
-                </p>                
                 </center>
         </footer>            
-        
-	<script src="<?php echo base_url();?>public/js/jquery-1.11.3.min.js"></script>
+                
+	<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>
 	<script src="<?php echo base_url('public/js/indicadores.js') ?>"></script>	
     </body>
         

@@ -19,9 +19,9 @@
     
     $(function(){
        $('table.data-table.full').dataTable( {
-            "iDisplayLength": 5,
+            "iDisplayLength": 50,
             "aLengthMenu": false,//[5, 6, 10],
-            "bPaginate": true,
+            "bPaginate": false,
             "bLengthChange": false,
             "bFilter": true,
             "bSort": true,

@@ -22,7 +22,7 @@ function listar_indicadores(){
                 html +="</tbody></table>";
                 $("#listaIndicadores").html(html);
             }else{
-                //alert('Seleccione Sector');
+                //alert(respuesta);
                 html = "<table>No existe Indicadores</table>";
                 $("#listaIndicadores").html(html);
             }

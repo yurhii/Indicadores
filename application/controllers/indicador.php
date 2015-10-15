@@ -14,18 +14,21 @@ class Indicador extends CI_Controller {
 	$this->load->view('plantilla', $data);
     }
     public function buscar_indicadores(){
-        //echo "entro"; exit;
-        //$listcheck = $this->input->post();
+        
         $datos = $this->Model_Consulta->listIndiSec();  
         echo json_encode($datos);
-        //print_r($listcheck);
+        
     }
     public function cargarDistritos(){
         if($this->input->post('provincia')){
             $provincia = $this->input->post('provincia');
+            if($_POST['provincia'] == '030000'){
+                echo "<option value='030000'></option>";
+            }else{
             $distritos = $this->Model_Consulta->lisDisxPro($provincia);
             foreach ($distritos as $value) {
                 echo '<option value='.$value->idrepterritorial.'>'.$value->nombre.'</option>';
+            }
             }
         }        
     }

@@ -5,7 +5,7 @@
          <center>SELECCIONAR SECTOR(ES)</center>
     <div class="panel panel-primary">
             <div class="panel-body">
-                  <form id="form-sector" >
+                  <form id="form-sector" > <!--INICIO PAR CARGAR INDICADORES-->
                   <div style="overflow: auto; height:350px; width: 100%;">
                       <table class="table table-first-column-number data-table display full">  
                           <thead>
@@ -52,9 +52,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select name="provincia" id="provincia">
-                                            <option value="">Seleccionar</option>
-                                            <option value="">Región Apurímac</option>                                
+                                        <select name="provincia" id="provincia">                                            
+                                            <option  value="030000">Región Apurímac</option>                                
                                             <option value="281">Abancay</option>                                
                                             <option value="291">Andahuaylas</option>
                                             <option value="311">Antabamba</option>
@@ -84,7 +83,7 @@
                             <tr>
                                 <td>Fecha Inicial:</td>
                                 <td>
-                                    <select>
+                                    <select name="fi_dia" id="fi_dia">
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -120,7 +119,7 @@
                                     
                                 </td>
                                 <td>
-                                    <select>
+                                    <select name="fi_mes" id="fi_mes">
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -137,7 +136,7 @@
                                     
                                 </td>
                                 <td>
-                                    <select>
+                                    <select name="fi_anio" id="fi_anio">
                                         <option>2001</option>
                                         <option>2002</option>
                                         <option>2003</option>
@@ -163,7 +162,7 @@
                             <tr>
                                 <td>Fecha Final:</td>
                                 <td>
-                                    <select>
+                                    <select name="ff_dia" id="ff_dia">
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -198,7 +197,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select>
+                                    <select name="ff_mes" id="ff_mes">
                                         <option>01</option>
                                         <option>02</option>
                                         <option>03</option>
@@ -214,7 +213,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select>
+                                    <select name="ff_anio" id="ff_anio">
                                         <option>2001</option>
                                         <option>2002</option>
                                         <option>2003</option>
@@ -245,8 +244,8 @@
                   </form> <!--fin form para cargar indicadores-->
                     
             </div>
-          </div>
-  </div>
+    </div>
+</div>
 
     <div class="col-md-8">
 
@@ -255,7 +254,7 @@
             <div class="panel-body">
                 
                 <form method="post" action="<?php echo base_url()?>consulta/mostrar">
-                  <div style="overflow: auto; height:560px; width: 100%;">
+                  <div style="overflow: auto; height:400px; width: 100%;">
                       <!--class="table table-bordered"  -->
                       <div id="listaIndicadores">
     

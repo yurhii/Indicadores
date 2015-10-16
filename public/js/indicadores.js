@@ -13,13 +13,14 @@ function listar_indicadores(){
             
             if(registros != ''){
                 
-                html ="<table class='data-table full'><thead>";
-                html +="<tr><th></th><th>NOMBRE</th><th></th><th></th></tr>";
+                
+                html ="<table class='table table-hover'><thead>";
+                html +="<tr><th></th><th>Indicador</th><th>Sector</th><th>Periodo</th></tr>";
                 html +="</thead><tbody>";
                 for (var i = 0; i < registros.length; i++) {
-                    html +="<tr><td><input type='checkbox' name='listaSector[]' value='"+registros[i]["idformindicador"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["sigla"]+"</td><td>"+registros[i]["periodo"]+"</td></tr>";
+                    html +="<tr><td><input type='checkbox' name='listaSector[]' value='"+registros[i]["idformindicador"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["abrsector"]+"</td><td>"+registros[i]["periodo"]+"</td></tr>";
                 };
-                html +="</tbody></table>";
+                html +="</tbody></table>";                
                 $("#listaIndicadores").html(html);
             }else{
                 //alert(respuesta);

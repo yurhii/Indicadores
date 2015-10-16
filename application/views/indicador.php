@@ -253,7 +253,7 @@
         <div class="panel panel-primary">  
             <div class="panel-body">
                 
-                <form method="post" action="<?php echo base_url()?>consulta/mostrar">
+                <form method="post" action="<?php echo base_url()?>indicador/datajs">
                   <div style="overflow: auto; height:400px; width: 100%;">
                       <!--class="table table-bordered"  -->
                       <div id="listaIndicadores">

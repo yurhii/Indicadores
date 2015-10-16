@@ -32,5 +32,15 @@ class Indicador extends CI_Controller {
             }
         }        
     }
+    public function datajs(){
+        $r = $this->input->post();
+        if(isset($r)){
+            $a = $_POST['listaSector'];
+            print_r($a);
+            echo 'post';exit;
+        }else{
+            echo 'no post'; exit;
+        }
+    }
 }
 

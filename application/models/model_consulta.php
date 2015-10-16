@@ -7,7 +7,6 @@ class Model_Consulta extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
-
     public function listaSector() {        
         $query = $this->db->query("
             SELECT f.idfuenteinformacion, rt.idrepterritorial,f.nombre as nombresector, f.idtipofuenteinfo,f.sigla, rt.nombre
@@ -48,7 +47,7 @@ class Model_Consulta extends CI_Model {
             if($_POST['distrito']!=NULL && $_POST['provincia']!='030000'){
                 $distrito = $datosForm['distrito'];//condició para verificar nivel provincia y distrito
 
-                $query = $this->db->query("SELECT A .idformindicador,b.idrepterritorial,b.nombre as localidad,b.codigo,C .nombre as nombreindicador,e.idfuenteinformacion,fi.nombre,G .sigla,date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
+                $query = $this->db->query("SELECT A .idformindicador,b.idrepterritorial,b.nombre as localidad,b.codigo,C .nombre as nombreindicador,fi.sigla as abrsector,e.idfuenteinformacion,fi.nombre,G .sigla,date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
             FROM
             formindicador A,repterritorial b,formula C,formvarterri e,indicador f,unidadmedida G,fuenteinformacion fi
             WHERE
@@ -62,12 +61,12 @@ class Model_Consulta extends CI_Model {
             AND fi.idfuenteinformacion IN ($ids)
             AND b.idrepterritorial IN ($provincia,$distrito)
             AND e.fechadatoini BETWEEN '$fechaInicial' AND '$fechaFinal'
-            GROUP BY 	fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,	e.idfuenteinformacion,	C .formula,
+            GROUP BY 	fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,fi.sigla,	e.idfuenteinformacion,	C .formula,
             A .idrepterritorial,	e.idfuenteinformacion,	e.idmetodocaptura,	G .sigla,	e.fechadatoini
-            ORDER BY e.fechadatoini;");                      
+            ORDER BY A.idformindicador;");                      
                 return $query->result();
             }else{
-                    $query = $this->db->query("SELECT A .idformindicador,b.idrepterritorial,b.nombre as localidad,b.codigo,C .nombre as nombreindicador,e.idfuenteinformacion,fi.nombre,G .sigla,date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
+                    $query = $this->db->query("SELECT A .idformindicador,b.idrepterritorial,b.nombre as localidad,b.codigo,C .nombre as nombreindicador,fi.sigla as abrsector,e.idfuenteinformacion,fi.nombre,G .sigla,date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
             FROM
             formindicador A,repterritorial b,formula C,formvarterri e,indicador f,unidadmedida G,fuenteinformacion fi
             WHERE
@@ -81,9 +80,9 @@ class Model_Consulta extends CI_Model {
             AND fi.idfuenteinformacion IN ($ids)
             AND b.codigo = '030000'
             AND e.fechadatoini BETWEEN '$fechaInicial' AND '$fechaFinal'
-            GROUP BY 	fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,	e.idfuenteinformacion,	C .formula,
+            GROUP BY 	fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,fi.sigla,	e.idfuenteinformacion,	C .formula,
             A .idrepterritorial,	e.idfuenteinformacion,	e.idmetodocaptura,	G .sigla,	e.fechadatoini
-            ORDER BY e.fechadatoini;");                      
+            ORDER BY A.idformindicador;");                      
                 return $query->result();
             }
         }else{
@@ -98,20 +97,3 @@ class Model_Consulta extends CI_Model {
         }
     }
 }
-
-          /*$query = $this->db->query("
-                SELECT a.idformindicador, b.idrepterritorial,b.nombre as localidad, b.codigo ,c.nombre as nombreindicador, e.idfuenteinformacion, fi.nombre,
-            g.sigla,date_part('year',e.fechadatoini)::CHARACTER VARYING as periodo
-                FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
-                WHERE a.idrepterritorial = b.idrepterritorial	
-                AND a.idformula = c.idformula
-                AND a.idformindicador = e.idformindicador
-                AND c.idformula = f.idformula
-                AND f.idunidadmedida = g.idunidadmedida
-                and b.idrepterritorial = a.idrepterritorial
-                and fi.idfuenteinformacion = e.idfuenteinformacion		
-                and fi.idfuenteinformacion in ($ids)
-                GROUP BY fi.nombre,a.idformindicador,b.idrepterritorial,b.nombre,b.codigo,c.nombre,
-                    e.idfuenteinformacion, c.formula,a.idrepterritorial,e.idfuenteinformacion,
-                    e.idmetodocaptura,g.sigla,e.fechadatoini;
-                     ");*/

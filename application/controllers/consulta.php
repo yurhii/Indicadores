@@ -10,10 +10,7 @@ class Consulta extends CI_Controller {
     public function index()
     {   
         $data['contenido'] = 'consulta';
-        $data['query'] = $this->Model_Consulta->all();     
-        if($this->input->post()){
-        $data['listaindi'] = $this->Model_Consulta->llenar_indi2(); 
-        }
+        $data['query'] = $this->Model_Consulta->listaSector();        
 	$this->load->view('plantilla', $data);
     }    
     public function mostrar_indi(){

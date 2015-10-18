@@ -1,7 +1,9 @@
 $(document).on("ready", inicio);
 function inicio(){
-    $("#btnListar").click(listar_indicadores);
+    $("#btnListar").click(listar_indicadores);   
 }
+
+
 function listar_indicadores(){
     $.ajax({
        url:"http://localhost:8080/indicadores/indicador/buscar_indicadores",
@@ -18,7 +20,7 @@ function listar_indicadores(){
                 html +="<tr><th></th><th>Indicador</th><th>Sector</th><th>Periodo</th></tr>";
                 html +="</thead><tbody>";
                 for (var i = 0; i < registros.length; i++) {
-                    html +="<tr><td><input type='checkbox' name='listaSector[]' value='"+registros[i]["idformindicador"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["abrsector"]+"</td><td>"+registros[i]["periodo"]+"</td></tr>";
+                    html +="<tr><td><input type='checkbox' name='listaIndicador[]' value='"+registros[i]["idformindicador"]+registros[i]["valor"]+registros[i]["periodo"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["abrsector"]+"</td><td>"+registros[i]["periodo"]+"</td></tr>";
                 };
                 html +="</tbody></table>";                
                 $("#listaIndicadores").html(html);

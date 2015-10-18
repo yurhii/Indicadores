@@ -5,7 +5,7 @@
          <center>SELECCIONAR SECTOR(ES)</center>
     <div class="panel panel-primary">
             <div class="panel-body">
-                  <form id="form-sector" > <!--INICIO PAR CARGAR INDICADORES-->
+                <form id="form-sector"> <!--INICIO PAR CARGAR INDICADORES-->
                   <div style="overflow: auto; height:350px; width: 100%;">
                       <table class="table table-first-column-number data-table display full">  
                           <thead>
@@ -252,20 +252,18 @@
         <center>SELECCIONAR INDICADOR(ES)</center>
         <div class="panel panel-primary">  
             <div class="panel-body">
-                
-                <form method="post" action="<?php echo base_url()?>indicador/datajs">
+                <form method="post" action="<?php echo base_url('indicador/reportetabla')?>">
                   <div style="overflow: auto; height:400px; width: 100%;">
-                      <!--class="table table-bordered"  -->
-                      <div id="listaIndicadores">
-    
-                      </div>               
+                      <!--class="table table-bordered"  -->                                                 
+                            <div id="listaIndicadores">
+                                
+                            </div>                            
                   </div>
                   <br>
                   <center>
-                       <input type="submit" value="Mostrar Consulta" class="btn btn-default">
+                      <input type="submit" value="enviar">
                   </center>
                 </form>
-                
             </div>
         </div>
     
@@ -274,8 +272,6 @@
  
     
 </div>
-
-
 
 
 <script type="text/javascript">
@@ -297,7 +293,6 @@
 
 
 
-
 <!--INICIO PRUEBA PARA POST ACTIVANDO CHECK-->
 <!--<input type="checkbox" id="provincia" name="provincia" value="281" onclick="changeValueCheckbox(this)" >abancay-->
 <script type="text/javascript">
@@ -315,3 +310,4 @@
      }*/
 </script>
 <!--FIN PRUEBA PARA POST ACTIVANDO CHECK-->
+

@@ -32,11 +32,15 @@ class Indicador extends CI_Controller {
             }
         }        
     }
-    public function datajs(){
-        $r = $this->input->post();
-        if(isset($r)){
-            $a = $_POST['listaSector'];
-            print_r($a);
+    public function reportetabla(){
+        $abc = $this->input->post();
+        if(isset($abc)){
+            $checkIndi = $_POST['listaIndicador'];            
+            print_r($checkIndi);                      
+            exit;
+//            foreach ($checkIndi as $value) {
+//                echo $value.'<br>';
+//            }            
             echo 'post';exit;
         }else{
             echo 'no post'; exit;

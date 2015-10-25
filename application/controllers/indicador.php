@@ -2,6 +2,8 @@
 
 class Indicador extends CI_Controller {
 
+    
+
     function __construct() {
         parent::__construct();
         $this->load->model('Model_Consulta');
@@ -14,8 +16,7 @@ class Indicador extends CI_Controller {
 	$this->load->view('plantilla', $data);
     }
     public function buscar_indicadores(){
-        
-        $datos = $this->Model_Consulta->listIndiSec();  
+        $datos = $this->Model_Consulta->listIndiSec();
         echo json_encode($datos);
         
     }
@@ -30,18 +31,42 @@ class Indicador extends CI_Controller {
                 echo '<option value='.$value->idrepterritorial.'>'.$value->nombre.'</option>';
             }
             }
-        }        
+        }
     }
     public function reportetabla(){
+        $datosTabla = array();
         $abc = $this->input->post();
         if(isset($abc)){
-            $checkIndi = $_POST['listaIndicador'];            
-            print_r($checkIndi);                      
-            exit;
-//            foreach ($checkIndi as $value) {
-//                echo $value.'<br>';
-//            }            
-            echo 'post';exit;
+            $checkIndi = $_POST['listaIndicador'];
+            $indis = $this->Model_Consulta->listIndiSession();
+            //print_r($checkIndi);
+            //echo '<br>';
+            //$dataTable=array();
+            $i = 0;
+            foreach ($checkIndi as $value1){
+                $v1 = (String)$value1;
+                foreach ($indis as $value2) {
+                    //idformindicador,valor,periodo
+                    $valcomp = (String)$value2->idformindicador.''.$value2->valor.''.$value2->periodo;
+                    if($v1 == $valcomp){
+                        $dataTable[$i] = array("t_valor"=>(String)($value2->valor),
+                            "t_periodo"=>(String)($value2->periodo),
+                            "t_sigla"=>(String)($value2->sigla),
+                            "t_indicador"=>(String)($value2->nombreindicador),
+                            "t_sector"=>(String)($value2->abrsector),
+                            "t_localidad"=>(String)($value2->localidad)
+                            );                        
+                    }
+                }
+                $i = $i + 1;
+            }            
+            echo json_encode($dataTable);
+//            print_r($dataTable);
+//            echo '<br>';
+//            foreach ($dataTable as $value) {
+//                echo $value['t_sigla'];
+//            }
+//            exit;
         }else{
             echo 'no post'; exit;
         }

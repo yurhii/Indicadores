@@ -34,7 +34,7 @@ class Indicador extends CI_Controller {
         }
     }
     public function reportetabla(){
-        $datosTabla = array();
+        $dataTable = array();
         $abc = $this->input->post();
         if(isset($abc)){
             if(isset($_POST['listaIndicador'])){
@@ -64,7 +64,10 @@ class Indicador extends CI_Controller {
                 $i = $i + 1;
             } 
             
-            echo json_encode($dataTable);
+            //echo json_encode($dataTable);
+            $data['contenido'] = 'reportetabla';
+            $data['dataTable'] = $dataTable;
+            $this->load->view('reportetabla', $data);
             
 //            print_r($dataTable);
 //            echo '<br>';
@@ -73,11 +76,14 @@ class Indicador extends CI_Controller {
 //            }
 //            exit;
             }else{
-                return FALSE;
+                //return FALSE;
+                $data['dataTable'] = $dataTable;
+                $this->load->view('reportetabla',$data);
             }
         }else{
-            return FALSE;
+            $data['dataTable'] = $dataTable;
+            $this->load->view('reportetabla',$data);
         }
-    }
+    }    
 }
 

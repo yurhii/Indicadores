@@ -252,7 +252,8 @@
         <center>SELECCIONAR INDICADOR(ES)</center>
         <div class="panel panel-primary">  
             <div class="panel-body">
-                <form id="form-indicador">
+<!--                <form id="form-indicador">-->
+<form method="post" action="<?php echo base_url('indicador/reportetabla')?>" target="_blank">
                   <div style="overflow: auto; height:400px; width: 100%;">
                       <!--class="table table-bordered"  -->                                                 
                         <div id="listaIndicadores">
@@ -261,7 +262,8 @@
                   </div>
                   <br>
                   <center>                      
-                      <button type="button" id="btnTabla" class="btn btn-default">Tabla</button>
+<!--                      <button type="button" id="btnTabla" class="btn btn-default">Tabla</button>-->
+<input type="submit" value="enviar datos">
                   </center>
                 </form>
             </div>

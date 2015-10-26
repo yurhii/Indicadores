@@ -255,9 +255,9 @@
                 <form id="form-indicador">
                   <div style="overflow: auto; height:400px; width: 100%;">
                       <!--class="table table-bordered"  -->                                                 
-                            <div id="listaIndicadores">
+                        <div id="listaIndicadores">
                                 
-                            </div>                            
+                        </div>                            
                   </div>
                   <br>
                   <center>                      

@@ -15,8 +15,6 @@ function listar_indicadores(){
             var registros = eval(respuesta);
             
             if(registros != ''){
-                
-                
                 html ="<table class='table table-hover'><thead>";
                 html +="<tr><th></th><th>Indicador</th><th>Sector</th><th>Periodo</th></tr>";
                 html +="</thead><tbody>";
@@ -51,7 +49,11 @@ function datosTabla(){
                 html ="<table border='1'><thead>";
                 html +="<tr><th></th><th>Apurimac</th></tr>";
                 html +="<tr><th></th><th>DREA</th></tr>";
-                html +="<tr><th>Fecha</th><th>Casos familiar</th></tr>";
+                html +="<tr><th>Fecha</th>";
+                for (var i = 0; i < registros.length; i++){
+                    html +="<th>"+registros[i]["t_indicador"]+"</th>";
+                };
+                html +="</tr>";
                 html +="</thead><tbody>";
                 for (var i = 0; i < registros.length; i++) {
                     html +="<tr><td>"+registros[i]["t_periodo"]+"</td><td>"+registros[i]["t_valor"]+"</td></tr>";

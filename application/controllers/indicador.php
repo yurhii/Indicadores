@@ -37,6 +37,9 @@ class Indicador extends CI_Controller {
         $datosTabla = array();
         $abc = $this->input->post();
         if(isset($abc)){
+            if(isset($_POST['listaIndicador'])){
+                
+            
             $checkIndi = $_POST['listaIndicador'];
             $indis = $this->Model_Consulta->listIndiSession();
             //print_r($checkIndi);
@@ -59,16 +62,21 @@ class Indicador extends CI_Controller {
                     }
                 }
                 $i = $i + 1;
-            }            
+            } 
+            
             echo json_encode($dataTable);
+            
 //            print_r($dataTable);
 //            echo '<br>';
 //            foreach ($dataTable as $value) {
 //                echo $value['t_sigla'];
 //            }
 //            exit;
+            }else{
+                return FALSE;
+            }
         }else{
-            echo 'no post'; exit;
+            return FALSE;
         }
     }
 }

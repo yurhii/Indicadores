@@ -1,6 +1,7 @@
 $(document).on("ready", inicio);
 function inicio(){
     $("#btnListar").click(listar_indicadores);   
+    $("#btnTabla").click(datosTabla);   
 }
 
 
@@ -28,6 +29,35 @@ function listar_indicadores(){
                 //alert(respuesta);
                 html = "<table>No existe Indicadores</table>";
                 $("#listaIndicadores").html(html);
+            }
+        }
+    });
+}
+
+function datosTabla(){
+    $.ajax({
+       url:"http://localhost:8080/indicadores/indicador/reportetabla",
+        type: 'POST',
+        data: $("#form-indicador").serialize(),
+        success:function(respuesta){
+        //alert(respuesta);        
+            var registros = eval(respuesta);
+            //alert(registros);
+            if(registros === undefined){
+                html = "<table>No existen datos...</table>";
+                $("#reportetabla").html(html);                
+            }else{
+                
+                html ="<table border='1'><thead>";
+                html +="<tr><th></th><th>Apurimac</th></tr>";
+                html +="<tr><th></th><th>DREA</th></tr>";
+                html +="<tr><th>Fecha</th><th>Casos familiar</th></tr>";
+                html +="</thead><tbody>";
+                for (var i = 0; i < registros.length; i++) {
+                    html +="<tr><td>"+registros[i]["t_periodo"]+"</td><td>"+registros[i]["t_valor"]+"</td></tr>";
+                };
+                html +="</tbody></table>";                
+                $("#reportetabla").html(html);
             }
         }
     });

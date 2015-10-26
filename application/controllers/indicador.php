@@ -8,7 +8,6 @@ class Indicador extends CI_Controller {
         parent::__construct();
         $this->load->model('Model_Consulta');
     }
-
     public function index()
     {   
         $data['contenido'] = 'indicador';
@@ -19,20 +18,38 @@ class Indicador extends CI_Controller {
         $datos = $this->Model_Consulta->listIndiSec();
         echo json_encode($datos);
         
-    }
-    public function cargarDistritos(){
-        if($this->input->post('provincia')){
-            $provincia = $this->input->post('provincia');
-            if($_POST['provincia'] == '030000'){
-                echo "<option value='030000'></option>";
-            }else{
-            $distritos = $this->Model_Consulta->lisDisxPro($provincia);
-            foreach ($distritos as $value) {
-                echo '<option value='.$value->idrepterritorial.'>'.$value->nombre.'</option>';
+    }    
+    public function tablareg(){
+        
+        $mypost = $this->input->post();
+        if(isset($mypost)){
+            
+            if(isset($_POST['listaIndicador'])){                
+            $checkIndi = $_POST['listaIndicador'];            
+            $datostablaReg = $this->Model_Consulta->mtablaReg();             
+            $data['contenido'] = 'tablareg';
+            $data['datostablaReg'] = $datostablaReg;
+            $this->load->view('tablareg', $data);
+            
+//            print_r($dataTable);
+//            echo '<br>';
+//            foreach ($dataTable as $value) {
+//                echo $value['t_sigla'];
+//            }
+//            exit;
+            }else{                
+                $data['datostablaReg'] = 'Error';
+                $this->load->view('tablareg',$data);
             }
-            }
+        }else{
+            $data['datostablaReg'] = 'Error';
+            $this->load->view('tablareg',$data);
         }
     }
+    public function tablapro(){
+        
+    }
+
     public function reportetabla(){
         $dataTable = array();
         $abc = $this->input->post();

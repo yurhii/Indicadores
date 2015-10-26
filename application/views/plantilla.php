@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">                
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link href="<?php echo base_url('public/img/favicon.ico')?>" rel="icon" type="image/x-icon" />
+        <title>Indicadores 2015</title>
 	<link href="<?php echo base_url('public/css/micss.css') ?>" rel="stylesheet" media="screen">
         <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
         <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
@@ -73,17 +75,13 @@
             </div>            
             
         </div>
-            
         <footer>
             <center>
                 <h4>                   
                     </h4> &copy; Indicadores - 2015
-                </center>
-        </footer>            
-                
+            </center>
+        </footer>     
 	<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>
-	<script src="<?php echo base_url('public/js/indicadores.js') ?>"></script>	
+	<script src="<?php echo base_url('public/js/indicadores.js') ?>"></script>	        
     </body>
-        
-        
 </html>

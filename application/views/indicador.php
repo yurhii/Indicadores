@@ -1,12 +1,12 @@
 <div class="row">
     
 <!--     <div class="col-xs-6 col-sm-4">-->
-<div class="col-md-4">
+<div class="col-md-5">
          <center>SELECCIONAR SECTOR(ES)</center>
-    <div class="panel panel-primary">
+    <div class="panel panel-success" style="border: 1.5px solid; border-color: #4cae4c;">
             <div class="panel-body">
                 <form id="form-sector"> <!--INICIO PAR CARGAR INDICADORES-->
-                  <div style="overflow: auto; height:350px; width: 100%;">
+                  <div style="overflow: auto; height:410px; width: 100%; ">
                       <table class="table table-first-column-number data-table display full">  
                           <thead>
                               <tr>
@@ -39,39 +39,35 @@
                       </table>
                   </div>
  
+                    
+                    <br>
                     <center>
-                        <b>Localidad</b>
+                        <button type="button" id="btnListar" class="btn btn-success">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            Mostrar Indicadores
+                        </button>
                     </center>
-                    <div class="row">
-                        
-                        <div class="col-md-12">
-                            <table class="table table-condensed">
-                                <tr>
-                                    <td>Región/Pronvincia:</td>
-                                    <td>Distrital:</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="provincia" id="provincia">                                            
-                                            <option  value="030000">Región Apurímac</option>                                
-                                            <option value="281">Abancay</option>                                
-                                            <option value="291">Andahuaylas</option>
-                                            <option value="311">Antabamba</option>
-                                            <option value="319">Aymaraes</option>
-                                            <option value="337">Cotabambas</option>
-                                            <option value="344">Chincheros</option>                                                                                                
-                                            <option value="353">Grau</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="distrito" id="distrito">
-                                            <option></option>
-                                        </select>                                        
-                                    </td>
-                                </tr>
-                            </table>
-                            </div>
-                    </div>
+                  </form> <!--fin form para cargar indicadores-->
+                    
+            </div>
+    </div>
+</div>
+
+    <div class="col-md-7">
+
+        <center>SELECCIONAR INDICADOR(ES)</center>
+        <div class="panel panel-primary" style="border: 1.5px solid; border-color: #337ab7;">  
+            <div class="panel-body">
+<!--                <form id="form-indicador">-->
+<form method="post" action="" target="_blank">
+                  <div style="overflow: auto; height:300px; width: 100%; border: 1px solid; border-color: #337ab7; margin-bottom: 5px;">
+                      <!--class="table table-bordered"  -->                                                 
+                        <div id="listaIndicadores">
+                                
+                        </div>                            
+                  </div>
+    
+    <div>
                     <center>
                         <b>Periodo (día/mes/año)</b>
                     </center>
@@ -237,35 +233,19 @@
                         </table>                        
                             </div>
                     </div>
-                    <br>
-                    <center>
-                        <button type="button" id="btnListar" class="btn btn-default">Mostrar Indicadores</button>
-                    </center>
-                  </form> <!--fin form para cargar indicadores-->
-                    
             </div>
-    </div>
-</div>
-
-    <div class="col-md-8">
-
-        <center>SELECCIONAR INDICADOR(ES)</center>
-        <div class="panel panel-primary">  
-            <div class="panel-body">
-<!--                <form id="form-indicador">-->
-<form method="post" action="<?php echo base_url('indicador/reportetabla')?>" target="_blank">
-                  <div style="overflow: auto; height:400px; width: 100%;">
-                      <!--class="table table-bordered"  -->                                                 
-                        <div id="listaIndicadores">
-                                
-                        </div>                            
-                  </div>
-                  <br>
-                  <center>                      
+                  <center>
+                      <b>Ver Tabla</b>
+                      <br>
 <!--                      <button type="button" id="btnTabla" class="btn btn-default">Tabla</button>-->
-<input type="submit" value="enviar datos">
+<!--                    <input type="submit" value="enviar datos">-->
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablareg')?>">Regional</button>
+                        <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/tablapro')?>">Provincial</button>                    
+                    </div>
                   </center>
                 </form>
+            
             </div>
         </div>
     
@@ -273,11 +253,15 @@
 
 </div>
 
-
-<div id="reportetabla">
-                                
-</div>                            
-
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("button[type=submit]").click(function() {
+        var accion = $(this).attr('dir');
+        $('form').attr('action', accion);
+        $('form').submit();
+    });    
+});
+</script>   
 
 <script type="text/javascript">
     $(document).ready(function() {

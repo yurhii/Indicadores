@@ -14,10 +14,26 @@
         <div class="contenido" id="container">            
             <div class="col-md-12">
                	<?php
-                
                     if($datostablaReg!='Error'){
                         if(count($datostablaReg)>0){
-                            print_r($datostablaReg);
+                ?>
+                
+                <table border="1">
+                    <tr>
+                        <?php $cantidad = count($datostablaReg); ?>
+                        <td colspan="<?php echo $cantidad;?>">APURÍMAC</td>                        
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <?php                            
+                            foreach ($datosiglaSec as $value){                               
+                                echo '<td>'.$value->sigla.'</td>';                                                                
+                            }
+                        ?>
+                    </tr>                    
+                </table>                
+                
+                <?php
                         }else{
                             echo 'No existen datos...';
                         }

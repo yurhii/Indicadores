@@ -34,11 +34,10 @@ class Model_Consulta extends CI_Model {
             foreach ($valor as $value) {
                 $lista[] = $value;                
             }
-            $idsectores = implode(',', $lista);        //concatenando id de cada sector       
-            
-            $datosComp = array('selsector'=>$idsectores);         
+            $idsectores = implode(',', $lista);        //concatenando id de cada sector                   
+            $datosComp = array('selsector'=>$idsectores);                     
             $this->session->set_userdata($datosComp);            
-            
+
             $query = $this->db->query("SELECT f.idelemento,c.nombre,fi.idfuenteinformacion,fi.sigla
 	FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
 	WHERE a.idrepterritorial = b.idrepterritorial	
@@ -109,6 +108,12 @@ WHERE
     
     public function mtablaPro(){
         $query = $this->db->query("");                
+        return $query->result();
+    }
+    public function msiglaSector(){
+        $idsectores = (String)$this->session->userdata('selsector');
+        $query = $this->db->query("SELECT idfuenteinformacion,nombre,sigla,url 
+        FROM fuenteinformacion where idfuenteinformacion in ($idsectores);");
         return $query->result();
     }
 }

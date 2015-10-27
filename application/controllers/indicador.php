@@ -15,28 +15,21 @@ class Indicador extends CI_Controller {
 	$this->load->view('plantilla', $data);
     }
     public function buscar_indicadores(){
-        $datos = $this->Model_Consulta->listIndiSec();
-        echo json_encode($datos);
-        
+        $datos = $this->Model_Consulta->listIndiSec();        
+        echo json_encode($datos);        
     }    
     public function tablareg(){
         
         $mypost = $this->input->post();
-        if(isset($mypost)){
-            
+        if(isset($mypost)){            
             if(isset($_POST['listaIndicador'])){                
             $checkIndi = $_POST['listaIndicador'];            
-            $datostablaReg = $this->Model_Consulta->mtablaReg();             
+            $datostablaReg = $this->Model_Consulta->mtablaReg();  
+            $datosiglaSec = $this->Model_Consulta->msiglaSector();
             $data['contenido'] = 'tablareg';
             $data['datostablaReg'] = $datostablaReg;
+            $data['datosiglaSec'] = $datosiglaSec;
             $this->load->view('tablareg', $data);
-            
-//            print_r($dataTable);
-//            echo '<br>';
-//            foreach ($dataTable as $value) {
-//                echo $value['t_sigla'];
-//            }
-//            exit;
             }else{                
                 $data['datostablaReg'] = 'Error';
                 $this->load->view('tablareg',$data);

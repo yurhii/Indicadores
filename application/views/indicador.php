@@ -62,6 +62,7 @@
 <form method="post" action="" target="_blank">
                   <div style="overflow: auto; height:300px; width: 100%; border: 1px solid; border-color: #337ab7; margin-bottom: 5px;">
                       <!--class="table table-bordered"  -->                                                 
+                    
                         <div id="listaIndicadores">
                                 
                         </div>                            
@@ -253,6 +254,29 @@
 
 </div>
 
+
+<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+          <div id="listaIndicadores">
+              
+          </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+
+
 <script type="text/javascript">
     $(document).ready(function(){
     $("button[type=submit]").click(function() {
@@ -300,3 +324,4 @@
 </script>
 <!--FIN PRUEBA PARA POST ACTIVANDO CHECK-->
 
+<script src="<?php echo base_url('public/js/collapse.js')?>" type="text/javascript"></script>

@@ -35,10 +35,10 @@ class Model_Consulta extends CI_Model {
                 $lista[] = $value;                
             }
             $idsectores = implode(',', $lista);        //concatenando id de cada sector                   
-            $datosComp = array('selsector'=>$idsectores);                     
+            $datosComp = array('selsector'=>$idsectores,'lissector'=>$lista);                     
             $this->session->set_userdata($datosComp);            
 
-            $query = $this->db->query("SELECT f.idelemento,c.nombre,fi.idfuenteinformacion,fi.sigla
+            $query = $this->db->query("SELECT f.idelemento,c.nombre,fi.idfuenteinformacion,fi.sigla,g.sigla as unimedida
 	FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
 	WHERE a.idrepterritorial = b.idrepterritorial	
 	AND a.idformula = c.idformula
@@ -48,7 +48,7 @@ class Model_Consulta extends CI_Model {
 	and b.idrepterritorial = a.idrepterritorial
 	and fi.idfuenteinformacion = e.idfuenteinformacion		
 	AND fi.idfuenteinformacion IN ($idsectores) --159,151,64
-	GROUP BY f.idelemento,c.nombre,fi.idfuenteinformacion,fi.sigla
+	GROUP BY f.idelemento,c.nombre,fi.idfuenteinformacion,fi.sigla,g.sigla
 	ORDER BY f.idelemento;");                      
                 return $query->result();
 
@@ -71,12 +71,27 @@ class Model_Consulta extends CI_Model {
         $fechaFinal = $ff_anio.'-'.$ff_mes.'-'.$ff_dia;
         
         $valor = $_POST['listaIndicador'];            
+        
         //$lista = array();
         foreach ($valor as $value) {
             $lista[] = $value;                
+            $a = explode(',', $value);
+            $ids[] = $a[0];
+            //$abrsector[] = $a[1];
+            //$nomindi[] = $a[2];
+            $nombres[] = $a[3];
+            $indisec[] = $a[1].','.$a[2];
         }
-        $idsindicadores = implode(',', $lista);
+        //print_r($ids);
+        //echo '<br>';
+        //print_r($indisec);
+        //exit;
+        
+        $idsindicadores = implode(',', $ids);                
         $idsectores = (String)$this->session->userdata('selsector');
+        $datosComp = array('lisindi'=>$lista,'listnombre'=>$nombres,'indisec'=>$indisec);                     
+        $this->session->set_userdata($datosComp);
+        
         
         $query = $this->db->query("SELECT 
 	A .idformindicador,	b.idrepterritorial,	b.nombre as localidad,	b.codigo,f.idelemento,	C .nombre as nombreindicador,fi.sigla as abrSector,	e.idfuenteinformacion,	fi.nombre,di.valor,G .sigla,	date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
@@ -115,5 +130,7 @@ WHERE
         $query = $this->db->query("SELECT idfuenteinformacion,nombre,sigla,url 
         FROM fuenteinformacion where idfuenteinformacion in ($idsectores);");
         return $query->result();
+    }
+    public function mselIndicador(){        
     }
 }

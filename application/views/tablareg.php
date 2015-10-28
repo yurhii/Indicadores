@@ -20,17 +20,33 @@
                 
                 <table border="1">
                     <tr>
+                        <td></td>
                         <?php $cantidad = count($datostablaReg); ?>
                         <td colspan="<?php echo $cantidad;?>">APURÍMAC</td>                        
                     </tr>
+                    <tr>       
+                        <td></td>
+                        <?php        
+                            $cantIndi = count($this->session->userdata('listnombre'));
+                            $indisec = $this->session->userdata('indisec');
+                            foreach ($datosiglaSec as $value){
+                                
+                                echo '<td colspan="'.$cantIndi.'">'.$value->sigla.'</td>';
+                            }
+//                            print_r($indi);
+//                            echo '<br>';
+//                            print_r($sec);
+                        ?>
+                    </tr>  
                     <tr>
                         <td>Fecha</td>
-                        <?php                            
-                            foreach ($datosiglaSec as $value){                               
-                                echo '<td>'.$value->sigla.'</td>';                                                                
-                            }
+                        <?php
+                        $nombresindi = $this->session->userdata('listnombre');
+                        foreach ($nombresindi as $value){
+                            echo '<td>'.$value.'</td>';
+                        }
                         ?>
-                    </tr>                    
+                    </tr>
                 </table>                
                 
                 <?php

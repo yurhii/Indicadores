@@ -23,9 +23,11 @@ class Indicador extends CI_Controller {
         $mypost = $this->input->post();
         if(isset($mypost)){            
             if(isset($_POST['listaIndicador'])){                
-            $checkIndi = $_POST['listaIndicador'];            
+            $checkIndi = $_POST['listaIndicador'];
             $datostablaReg = $this->Model_Consulta->mtablaReg();  
             $datosiglaSec = $this->Model_Consulta->msiglaSector();
+            print_r($this->Model_Consulta->mselIndicador());
+            
             $data['contenido'] = 'tablareg';
             $data['datostablaReg'] = $datostablaReg;
             $data['datosiglaSec'] = $datosiglaSec;

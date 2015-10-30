@@ -11,6 +11,73 @@ class Model_Consulta extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
+    
+    public function listaSecReg(){
+        $query = $this->db->query("SELECT e.idfuenteinformacion, e.nombre as nombresector, e.sigla as siglasector
+        FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
+        WHERE a.idformula = b.idformula
+        AND b.idformindicador = c.idformindicador
+        AND c.idrepterritorial = d.idrepterritorial
+        AND d.idrepterritorial = 280
+        AND c.idfuenteinformacion = e.idfuenteinformacion
+        GROUP BY e.idfuenteinformacion,e.nombre
+        ORDER BY e.nombre ASC;");
+        return $query->result();
+    }
+    public function listaSecPro(){
+        $query = $this->db->query("SELECT e.idfuenteinformacion, e.nombre as nombresector, e.sigla as siglasector
+        FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
+        WHERE a.idformula = b.idformula
+        AND b.idformindicador = c.idformindicador
+        AND c.idrepterritorial = d.idrepterritorial
+        AND d.idpadre = 280
+        AND c.idfuenteinformacion = e.idfuenteinformacion
+        GROUP BY e.idfuenteinformacion,e.nombre
+        ORDER BY e.nombre ASC;");
+        return $query->result();
+    }
+    public function listaSecDis(){
+        $query = $this->db->query("SELECT a.nombre nombreindicador, d.nombre as nombreregion, e.nombre as nombresector
+        FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
+        WHERE a.idformula = b.idformula
+        AND b.idformindicador = c.idformindicador
+        AND c.idrepterritorial = d.idrepterritorial
+        AND d.idpadre in (281,291,311,319,337,344,353)
+        AND c.idfuenteinformacion = e.idfuenteinformacion
+        GROUP BY a.nombre,d.nombre, e.nombre
+        ORDER BY a.nombre;");
+        return $query->result();
+    }
+
+    public function buscarIndiReg(){
+        if(isset($_POST['listaSector'])){
+            $datosForm = $this->input->post();//recuperando datos del formulario para mostrar indicadores
+            //cargar lista de sectores seleccionados
+            $valor = $_POST['listaSector'];            
+            //$lista = array();
+            foreach ($valor as $value) {
+                $lista[] = $value;                
+            }
+            $idsectores = implode(',', $lista);        //concatenando id de cada sector                   
+            
+
+            $query = $this->db->query("SELECT a.idformula, a.nombre nombreindicador,e.sigla as abrsector
+            FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
+            WHERE a.idformula = b.idformula
+            AND b.idformindicador = c.idformindicador
+            AND c.idrepterritorial = d.idrepterritorial
+            AND d.idrepterritorial = 280
+            AND c.idfuenteinformacion = e.idfuenteinformacion
+            AND e.idfuenteinformacion in ($idsectores)
+            GROUP BY a.idformula,a.nombre,e.sigla
+            ORDER BY a.nombre ASC;");
+            return $query->result();
+
+        }else{
+            return FALSE;
+        }
+    }
+
     public function listaSector() {        
         $query = $this->db->query("
             SELECT f.idfuenteinformacion, rt.idrepterritorial,f.nombre as nombresector, f.idtipofuenteinfo,f.sigla, rt.nombre
@@ -21,7 +88,7 @@ class Model_Consulta extends CI_Model {
             GROUP BY f.idfuenteinformacion, rt.nombre,rt.idrepterritorial
             ORDER BY f.idfuenteinformacion;
                  ");
-        return $query->result();          
+        return $query->result();        
     } 
     public function listIndiSec(){
         

@@ -4,7 +4,7 @@
         <meta charset="utf-8">                
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<?php echo base_url('public/img/favicon.ico')?>" rel="icon" type="image/x-icon" />
-        <title>Reporte Indicadores</title>
+        <title>Reporte Indicadores Regional</title>
     </head>
     <body style="margin-bottom: 0; padding: 0;">       
     <center>

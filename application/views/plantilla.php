@@ -49,18 +49,23 @@
               <div class="navbar-header">
                 <ul class="nav nav-pills"> <!--<ul class="nav navbar-nav">-->
                     <li>                       
-                        <a href="#">
+                        <a href="<?php echo base_url('indicador')?>">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Consulta
+                        <a href="<?php echo base_url('indicador/indiregional')?>" target="_blank">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Regional
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Indicadores
+                        <a href="<?php echo base_url('indicador/indiprovincial')?>" target="_blank">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Provincial
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('indicador/indidistrital')?>" target="_blank">
+                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Distrital
                         </a>
                     </li>
                   </ul>

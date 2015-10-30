@@ -6,8 +6,7 @@
 class Model_Consulta extends CI_Model {
 
     var $lista = array();
-    
-    
+
     function __construct() {
         parent::__construct();
         $this->load->database();
@@ -78,7 +77,7 @@ class Model_Consulta extends CI_Model {
             $a = explode(',', $value);
             $ids[] = $a[0];
             //$abrsector[] = $a[1];
-            //$nomindi[] = $a[2];
+            $nomindi[] = $a[2];
             $nombres[] = $a[3];
             $indisec[] = $a[1].','.$a[2];
         }
@@ -89,7 +88,7 @@ class Model_Consulta extends CI_Model {
         
         $idsindicadores = implode(',', $ids);                
         $idsectores = (String)$this->session->userdata('selsector');
-        $datosComp = array('lisindi'=>$lista,'listnombre'=>$nombres,'indisec'=>$indisec);                     
+        $datosComp = array('lisindi'=>$lista,'listnombre'=>$nombres,'indisec'=>$indisec,'nombreindi'=>$nomindi);                     
         $this->session->set_userdata($datosComp);
         
         
@@ -117,7 +116,7 @@ WHERE
 	AND e.fechadatoini BETWEEN '$fechaInicial' AND '$fechaFinal'
 	GROUP BY 	f.idelemento,di.valor,fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,fi.sigla,	e.idfuenteinformacion,	C .formula,
 	A .idrepterritorial,	e.idfuenteinformacion,	e.idmetodocaptura,	G .sigla,	e.fechadatoini
-	ORDER BY A.idformindicador;");                
+	ORDER BY A.idformindicador,e.fechadatoini;");                
         return $query->result();
     }
     

@@ -55,7 +55,7 @@ function listar_indicadores(){
                 html ="<table class='table table-hover'>";                   
                 html +="<tbody>";
                 for (var i = 0; i < registros.length; i++) {
-                    html +="<tr><td><input type='checkbox' name='listaIndicador[]' value='"+registros[i]["idelemento"]+","+registros[i]["sigla"]+","+registros[i]["nombre"]+","+registros[i]["nombre"]+' ['+registros[i]["unimedida"]+"]'></td><td>"+registros[i]["nombre"]+"</td><td>"+registros[i]["sigla"]+"</td></tr>";
+                    html +="<tr><td><input type='checkbox' name='listaIndicador[]' value='"+registros[i]["idelemento"]+","+registros[i]["sigla"]+","+registros[i]["nombre"]+","+registros[i]["nombre"]+' ['+registros[i]["unimedida"]+"],"+registros[i]["unimedida"]+"'></td><td>"+registros[i]["nombre"]+"</td><td>"+registros[i]["sigla"]+"</td></tr>";
                 };
                 html +="</tbody></table>";                
                 $("#listaIndicadores").html(html);

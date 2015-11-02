@@ -67,16 +67,9 @@
                                 
                         </div>                            
                   </div>
-    
-   
-                  <center>
-                      <b>Ver Tabla</b>
-                      <br>
-<!--                      <button type="button" id="btnTabla" class="btn btn-default">Tabla</button>-->
-<!--                    <input type="submit" value="enviar datos">-->
+                  <center>                    
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablareg')?>">Regional</button>
-                        <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/tablapro')?>">Provincial</button>                    
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>">Ver Tabla Regional</button>                        
                     </div>
                   </center>
                 </form>

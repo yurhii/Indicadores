@@ -59,8 +59,9 @@ class Model_Consulta extends CI_Model {
                 $lista[] = $value;                
             }
             $idsectores = implode(',', $lista);        //concatenando id de cada sector                   
+            $datosComp = array('selsector'=>$idsectores); 
+            $this->session->set_userdata($datosComp);
             
-
             $query = $this->db->query("SELECT a.idformula, a.nombre nombreindicador,e.sigla as abrsector
             FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
             WHERE a.idformula = b.idformula
@@ -76,8 +77,56 @@ class Model_Consulta extends CI_Model {
         }else{
             return FALSE;
         }
+    }    
+    
+    public function datosTablaReg(){
+        $datosForm = $this->input->post();     
+        $valor = $_POST['listaIndicador'];
+        
+        foreach ($valor as $value) {
+            $lista[] = $value;                
+            $a = explode(',', $value);
+            $ids[] = $a[0];            
+        }      
+        
+        $idsindicadores = implode(',', $ids);                
+        $idsectores = (String)$this->session->userdata('selsector');        
+        
+        
+        $query = $this->db->query("SELECT 
+	A .idformindicador,	b.idrepterritorial,	b.nombre as localidad,	b.codigo,f.idelemento,	C .nombre as nombreindicador,fi.sigla as abrSector,	e.idfuenteinformacion,	fi.nombre,di.valor,G .sigla,	date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
+FROM
+	formindicador A,	repterritorial b,	formula C,	formvarterri e,	indicador f,	unidadmedida G,	fuenteinformacion fi, datoindicador di
+WHERE
+	A .idrepterritorial = b.idrepterritorial
+	AND A .idformula = C .idformula
+	AND A .idformindicador = e.idformindicador
+	AND C .idformula = f.idformula
+	AND f.idunidadmedida = G .idunidadmedida
+	AND b.idrepterritorial = A .idrepterritorial
+	AND fi.idfuenteinformacion = e.idfuenteinformacion
+
+	AND di.fechadatoini = e.fechadatoini
+	AND di.idrepterritorial = b.idrepterritorial
+	AND di.idfuenteinformacion = fi.idfuenteinformacion
+	AND di.idvariables = e.idvariables
+
+	AND fi.idfuenteinformacion IN ($idsectores)
+	AND f.idelemento in ($idsindicadores)
+	AND b.idrepterritorial = 280
+	AND e.fechadatoini BETWEEN '2005-01-01' AND '2015-01-01'
+	GROUP BY 	f.idelemento,di.valor,fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,fi.sigla,	e.idfuenteinformacion,	C .formula,
+	A .idrepterritorial,	e.idfuenteinformacion,	e.idmetodocaptura,	G .sigla,	e.fechadatoini
+	ORDER BY A.idformindicador,e.fechadatoini;");                
+        return $query->result();
     }
 
+
+
+
+
+
+//_-------------Anterior
     public function listaSector() {        
         $query = $this->db->query("
             SELECT f.idfuenteinformacion, rt.idrepterritorial,f.nombre as nombresector, f.idtipofuenteinfo,f.sigla, rt.nombre
@@ -147,6 +196,7 @@ class Model_Consulta extends CI_Model {
             $nomindi[] = $a[2];
             $nombres[] = $a[3];
             $indisec[] = $a[1].','.$a[2];
+            $unimedida[] = $a[4];
         }
         //print_r($ids);
         //echo '<br>';
@@ -155,12 +205,15 @@ class Model_Consulta extends CI_Model {
         
         $idsindicadores = implode(',', $ids);                
         $idsectores = (String)$this->session->userdata('selsector');
-        $datosComp = array('lisindi'=>$lista,'listnombre'=>$nombres,'indisec'=>$indisec,'nombreindi'=>$nomindi);                     
+        $datosComp = array('lisindi'=>$lista,'listnombre'=>$nombres,'indisec'=>$indisec,'nombreindi'=>$nomindi,'unimedida'=>$unimedida);
         $this->session->set_userdata($datosComp);
         
         
-        $query = $this->db->query("SELECT 
-	A .idformindicador,	b.idrepterritorial,	b.nombre as localidad,	b.codigo,f.idelemento,	C .nombre as nombreindicador,fi.sigla as abrSector,	e.idfuenteinformacion,	fi.nombre,di.valor,G .sigla,	date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo
+        
+        
+        
+        $query = $this->db->query("SELECT * FROM crosstab(
+$$ SELECT C.nombre,date_part('year', e.fechadatoini) :: CHARACTER VARYING AS periodo, di.valor
 FROM
 	formindicador A,	repterritorial b,	formula C,	formvarterri e,	indicador f,	unidadmedida G,	fuenteinformacion fi, datoindicador di
 WHERE
@@ -180,10 +233,13 @@ WHERE
 	AND fi.idfuenteinformacion IN ($idsectores)
 	AND f.idelemento in ($idsindicadores)
 	AND b.idrepterritorial = 280
-	AND e.fechadatoini BETWEEN '$fechaInicial' AND '$fechaFinal'
-	GROUP BY 	f.idelemento,di.valor,fi.nombre,	A .idformindicador,	b.idrepterritorial,	b.nombre,	b.codigo,	C .nombre,fi.sigla,	e.idfuenteinformacion,	C .formula,
-	A .idrepterritorial,	e.idfuenteinformacion,	e.idmetodocaptura,	G .sigla,	e.fechadatoini
-	ORDER BY A.idformindicador,e.fechadatoini;");                
+
+	AND e.fechadatoini BETWEEN '2005-01-01' AND '2015-01-01'
+	GROUP BY C.nombre,e.fechadatoini, di.valor,fi.sigla
+	ORDER BY 1 $$,
+	$$ SELECT c.anio:: CHARACTER VARYING AS periodo
+ FROM generate_series(2005, 2015) AS c(anio) $$
+)AS (indicador text, \"a2005\" FLOAT,\"a2006\" FLOAT,\"a2007\" FLOAT,\"a2008\" FLOAT,\"a2009\" FLOAT,\"a2010\" FLOAT,\"a2011\" FLOAT,\"a2012\" FLOAT, \"a2013\" FLOAT, \"a2014\" FLOAT, \"a2015\" FLOAT);");                
         return $query->result();
     }
     

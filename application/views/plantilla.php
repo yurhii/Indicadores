@@ -54,17 +54,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('indicador/indiregional')?>" target="_blank">
+                        <a href="<?php echo base_url('indicador/indiregional')?>">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Regional
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('indicador/indiprovincial')?>" target="_blank">
+                        <a href="<?php echo base_url('indicador/indiprovincial')?>" >
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Provincial
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('indicador/indidistrital')?>" target="_blank">
+                        <a href="<?php echo base_url('indicador/indidistrital')?>" >
                             <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Distrital
                         </a>
                     </li>

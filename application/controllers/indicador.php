@@ -31,17 +31,17 @@ class Indicador extends CI_Controller {
         $datos = $this->Model_Consulta->buscarIndiReg();
         echo json_encode($datos);
     }
-    public function tablaindireg(){
+    public function tablaindireg(){        
         $mypost = $this->input->post();
         if(isset($mypost)){
             if(isset($_POST['listaIndicador'])){                
-            $checkIndi = $_POST['listaIndicador'];
             
-            $datostablaReg = $this->Model_Consulta->datosTablaReg();
+            $checkIndi = $_POST['listaIndicador'];            
+            $datostablaReg = $this->Model_Consulta->datosTablaReg();           
             $data['contenido'] = 'tablaindireg';
             $data['datostablaReg'] = $datostablaReg;            
             $this->load->view('tablaindireg', $data);
-            }else{                
+            }else{
                 $data['datostablaReg'] = 'Error';
                 $this->load->view('tablaindireg',$data);
             }

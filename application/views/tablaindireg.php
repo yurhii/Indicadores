@@ -25,15 +25,15 @@
                 ?>
                 
                 
-                                <table class="table table-bordered">
+                <table class="table table-bordered">
                     <?php $anios = array("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015");?>
-                    <thead>
-<!--                    <th>Sector</th>-->
+                    <thead style="background-color: #dbdbdb">
+                    <th>Sector</th>
                     <th>Indicador</th>
                         <?php
-              foreach ($anios as $value) {
-                  echo '<th>'.$value.'</th>';
-              }
+                            foreach ($anios as $value) {
+                                echo '<th>'.$value.'</th>';
+                            }
                         ?>
                     </thead>
                     <tbody>
@@ -43,19 +43,19 @@
                     
                           foreach ($datostablaReg as $valued) {                              
                               foreach ($valued as $value) {
-                                  
-                                
                               ?>
                     <tr>
                         
                         <?php 
-//                        $cansec = 0;
-//                        for ($i = 0; $i < count($indisec); $i++) {
-//                            if($indisec[$i][0]==$value->nombre){
-//                                echo '<td>'.$indisec[$i][1].'</td>';                                
-//                            }                        
-//                        } ?>
-                        <td><?php echo $value->nombre; ?></td>
+                        
+                        for ($i = 0; $i < count($indisec); $i++) {
+                            $unionindisec = $indisec[$i][0].' '.$indisec[$i][1];
+                            if($unionindisec==$value->nombre){
+                                echo '<td>'.$indisec[$i][1].'</td>';
+                                echo '<td>'.$indisec[$i][0].'</td>';
+                            }                        
+                        } ?>
+                        
                         <td><?php echo $value->a2005; ?></td>
                         <td><?php echo $value->a2006; ?></td>
                         <td><?php echo $value->a2007; ?></td>

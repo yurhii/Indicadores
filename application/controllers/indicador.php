@@ -34,10 +34,9 @@ class Indicador extends CI_Controller {
     public function tablaindireg(){        
         $mypost = $this->input->post();
         if(isset($mypost)){
-            if(isset($_POST['listaIndicador'])){                
-            
+            if(isset($_POST['listaIndicador'])){            
             $checkIndi = $_POST['listaIndicador'];            
-            $datostablaReg = $this->Model_Consulta->datosTablaReg();           
+            $datostablaReg = $this->Model_Consulta->datosTablaReg();
             $data['contenido'] = 'tablaindireg';
             $data['datostablaReg'] = $datostablaReg;            
             $this->load->view('tablaindireg', $data);

@@ -21,7 +21,7 @@ function listarIndiReg(){
                 html ="<table class='table table-hover'>";                   
                 html +="<tbody>";
                 for (var i = 0; i < registros.length; i++) {
-                    html +="<tr><td><input type='checkbox' name='listaIndicador[]' value='"+registros[i]["idformula"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["abrsector"]+"</td></tr>";
+                    html +="<tr><td><input type='checkbox' name='listaIndicador[]' value='"+registros[i]["idformula"]+","+registros[i]["nombreindicador"]+","+registros[i]["abrsector"]+","+registros[i]["idfuenteinformacion"]+"'></td><td>"+registros[i]["nombreindicador"]+"</td><td>"+registros[i]["abrsector"]+"</td></tr>";
                 };
                 html +="</tbody></table>";                
                 $("#listaIndiReg").html(html);

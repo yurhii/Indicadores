@@ -28,7 +28,7 @@
                                 <table class="table table-bordered">
                     <?php $anios = array("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015");?>
                     <thead>
-                    <th>Sector</th>
+<!--                    <th>Sector</th>-->
                     <th>Indicador</th>
                         <?php
               foreach ($anios as $value) {
@@ -38,11 +38,23 @@
                     </thead>
                     <tbody>
                         
-                    <?php                    
-                          foreach ($datostablaReg as $value) {                              
+                    <?php    
+                    $indisec = $this->session->userdata('indisec');
+                    
+                          foreach ($datostablaReg as $valued) {                              
+                              foreach ($valued as $value) {
+                                  
+                                
                               ?>
                     <tr>
-                        <td></td>
+                        
+                        <?php 
+//                        $cansec = 0;
+//                        for ($i = 0; $i < count($indisec); $i++) {
+//                            if($indisec[$i][0]==$value->nombre){
+//                                echo '<td>'.$indisec[$i][1].'</td>';                                
+//                            }                        
+//                        } ?>
                         <td><?php echo $value->nombre; ?></td>
                         <td><?php echo $value->a2005; ?></td>
                         <td><?php echo $value->a2006; ?></td>
@@ -59,10 +71,17 @@
                     </tr>
                     <?php
                           }
+                        }
                     ?>
                     </tbody>
                 </table>
+                <?php
                 
+//                $indisec = $this->session->userdata('indisec');
+//                for ($i = 0; $i < count($indisec); $i++) {
+//                    echo $indisec[$i][0].' | '.$indisec[$i][1].'<br>';
+//                }
+                ?>
                 
                 
                 

@@ -62,7 +62,7 @@ class Model_Consulta extends CI_Model {
             $datosComp = array('selsector'=>$idsectores); 
             $this->session->set_userdata($datosComp);
             
-            $query = $this->db->query("SELECT a.idformula, a.nombre nombreindicador,e.sigla as abrsector
+            $query = $this->db->query("SELECT a.idformula, a.nombre nombreindicador,e.sigla as abrsector,e.idfuenteinformacion
             FROM formula a, formindicador b, formvarterri c, repterritorial d, fuenteinformacion e
             WHERE a.idformula = b.idformula
             AND b.idformindicador = c.idformindicador
@@ -70,60 +70,16 @@ class Model_Consulta extends CI_Model {
             AND d.idrepterritorial = 280
             AND c.idfuenteinformacion = e.idfuenteinformacion
             AND e.idfuenteinformacion in ($idsectores)
-            GROUP BY a.idformula,a.nombre,e.sigla
-            ORDER BY 1,a.nombre ASC;");
+            GROUP BY a.idformula,a.nombre,e.sigla,e.idfuenteinformacion
+            ORDER BY e.sigla,a.nombre ASC;");
             return $query->result();
 
         }else{
             return FALSE;
         }
-    }    
-    
-    public function datosTablaReg(){
-        
-        $datosForm = $this->input->post();     
-        $valor = $_POST['listaIndicador'];        
-        foreach ($valor as $value) {
-            $lista[] = $value;                
-            $a = explode(',', $value);
-            $ids[] = $a[0];            
-        }        
-        $idsindicadores = implode(',', $ids);        
-        $formula = $this->cargarFomula($idsindicadores);        
-	$parametro ="/<(.*?)>/";
-	$rpta=1;
-	$arreglo = "";
-	while ($rpta != 0)
-	{
-		$rpta = preg_match($parametro,$formula ,$text);
-		if($text != null)
-		{
-			$formula = str_replace($text[0],'',$formula);	
-			$arreglo =  $arreglo . "'". $text[1] . "',";		
-		}
-	}
-	$arreglo = "array[". $arreglo . "]";
-	$arreglo =str_replace(",]","]",$arreglo);
-        
-        $query = $this->db->query("SELECT * FROM crosstab(
-$$ SELECT c.nombre,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula(c.formula,$arreglo,a.idrepterritorial,e.fechadatoini)	
-	FROM formindicador a, repterritorial b, formula c, formvarterri e,indicador f, unidadmedida g, fuenteinformacion h
-	WHERE a.idrepterritorial = b.idrepterritorial
-	AND a.idformula in ($idsindicadores)
-	AND a.idformula = c.idformula
-	AND a.idformindicador = e.idformindicador	
-	AND c.idformula = f.idformula	
-	AND f.idunidadmedida = g.idunidadmedida
-	GROUP BY c.nombre,c.formula,a.idrepterritorial,e.fechadatoini,g.nombre,g.sigla
-	ORDER BY 1,fecha asc $$,
-	$$ SELECT c.anio:: CHARACTER VARYING AS periodo
- FROM generate_series(2005, 2015) AS c(anio) $$
-)AS (nombre text, \"a2005\" FLOAT,\"a2006\" FLOAT,\"a2007\" FLOAT,\"a2008\" FLOAT,\"a2009\" FLOAT,\"a2010\" FLOAT,\"a2011\" FLOAT,\"a2012\" FLOAT, \"a2013\" FLOAT, \"a2014\" FLOAT, \"a2015\" FLOAT);");             
-        return $query->result();
     }
-
+    
     public function cargarFomula($idformula){
-        
         $query = $this->db->query("SELECT * FROM formula WHERE idformula IN($idformula);");        
         foreach ($query->result() as $value) {            
             $formulas[] = '('.$value->formula.')';
@@ -131,13 +87,124 @@ $$ SELECT c.nombre,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula
         $misformulas = implode(',', $formulas);        
         return $misformulas;
     }
+    
+    public function datosTablaReg(){  
+        
+        $valor = $_POST['listaIndicador'];                
+        foreach ($valor as $value) {                            
+            $a = explode(',', $value);
+            $ids[] = $a[0];
+            //$nombreindi[] = $a[1];
+            //$abrsector[] = $a[2];
+            $indisec[] = array($a[1],$a[2]);
+            $idsec[] = $a[3];
+            $idsecindi[] = array($a[0],$a[3]);
+        }
+        //$datosComp = array('nombreindi'=>$nombreindi,'abrsector'=>$abrsector); 
+        $datosComp = array('indisec'=>$indisec); 
+        $this->session->set_userdata($datosComp);
+        
+        $idsindicadores = implode(',', $ids);
+        $idsectores = implode(',', $idsec);
+        
+        
+       
+        
+        for ($i = 0; $i < count($idsecindi); $i++) {
+            
+                $formula = $this->cargarFomula($idsecindi[$i][0]);
+                $idformula = $idsecindi[$i][0];
+                $id_sectores = $idsecindi[$i][1];
+	$parametro ="/<(.*?)>/";
+	$rpta=1;
+	$arreglo = "";
+	while ($rpta != 0)
+	{
+            $rpta = preg_match($parametro,$formula ,$text);
+            if($text != null)
+            {
+                    $formula = str_replace($text[0],'',$formula);	
+                    $arreglo =  $arreglo . "'". $text[1] . "',";		
+            }
+	}
+	$arreglo = "array[". $arreglo . "]";
+	$arreglo =str_replace(",]","]",$arreglo);
+        
+        $query = $this->db->query("SELECT * FROM crosstab(
+        $$ SELECT (c.nombre||' '||fi.sigla) as secind,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula(c.formula,$arreglo,a.idrepterritorial,e.fechadatoini)
+	FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
+	WHERE a.idrepterritorial = b.idrepterritorial	
+	AND a.idformula = c.idformula
+	AND a.idformindicador = e.idformindicador
+	AND c.idformula = f.idformula
+	AND f.idunidadmedida = g.idunidadmedida
+	and b.idrepterritorial = a.idrepterritorial
+	and fi.idfuenteinformacion = e.idfuenteinformacion	
+        AND e.idfuenteinformacion = $id_sectores
+	AND c.idformula = $idformula
+	AND b.idrepterritorial = 280	
+	GROUP BY c.nombre,fi.sigla,e.fechadatoini,a.idformula,c.formula,a.idrepterritorial
+	ORDER BY a.idformula,c.nombre $$,
+	$$ SELECT c.anio:: CHARACTER VARYING AS periodo
+ FROM generate_series(2005, 2015) AS c(anio) $$
+)AS (nombre text, \"a2005\" FLOAT,\"a2006\" FLOAT,\"a2007\" FLOAT,\"a2008\" FLOAT,\"a2009\" FLOAT,\"a2010\" FLOAT,\"a2011\" FLOAT,\"a2012\" FLOAT, \"a2013\" FLOAT, \"a2014\" FLOAT, \"a2015\" FLOAT);");             
+        
+            $my_query[] = $query->result();            
+        }        
+        
+        return $my_query;
+                
+//        foreach ($my_query as $value) {
+//            foreach ($value as $value2) {
+//                echo $value2->nombre.'<br>';
+//            }
+//        }
+//        exit;
+        
+        
+//        $query = $this->db->query("
+//        SELECT (c.nombre||' '||fi.sigla) as secind,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula(c.formula,$arreglo,a.idrepterritorial,e.fechadatoini)
+//	FROM formindicador a, repterritorial b, formula c ,formvarterri e,indicador f, unidadmedida g, fuenteinformacion fi
+//	WHERE a.idrepterritorial = b.idrepterritorial	
+//	AND a.idformula = c.idformula
+//	AND a.idformindicador = e.idformindicador
+//	AND c.idformula = f.idformula
+//	AND f.idunidadmedida = g.idunidadmedida
+//	and b.idrepterritorial = a.idrepterritorial
+//	and fi.idfuenteinformacion = e.idfuenteinformacion	
+//	AND c.idformula in ($idsindicadores)
+//	AND b.idrepterritorial = 280	
+//	GROUP BY c.nombre,fi.sigla,e.fechadatoini,a.idformula,c.formula,a.idrepterritorial
+//	ORDER BY a.idformula;
+//	");             
+        
+//        $query = $this->db->query("SELECT * FROM crosstab(
+//        $$ SELECT c.nombre,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula(c.formula,$arreglo,a.idrepterritorial,e.fechadatoini)	
+//	FROM formindicador a, repterritorial b, formula c, formvarterri e,indicador f, unidadmedida g, fuenteinformacion h
+//	WHERE a.idrepterritorial = b.idrepterritorial
+//	AND a.idformula in ($idsindicadores)
+//	AND a.idformula = c.idformula
+//	AND a.idformindicador = e.idformindicador	
+//	AND c.idformula = f.idformula	
+//	AND f.idunidadmedida = g.idunidadmedida        
+//	GROUP BY c.nombre,c.formula,a.idrepterritorial,e.fechadatoini,g.nombre,g.sigla,c.idformula
+//	ORDER BY c.idformula,e.fechadatoini asc $$,
+//	$$ SELECT c.anio:: CHARACTER VARYING AS periodo
+// FROM generate_series(2005, 2015) AS c(anio) $$
+//)AS (nombre text, \"a2005\" FLOAT,\"a2006\" FLOAT,\"a2007\" FLOAT,\"a2008\" FLOAT,\"a2009\" FLOAT,\"a2010\" FLOAT,\"a2011\" FLOAT,\"a2012\" FLOAT, \"a2013\" FLOAT, \"a2014\" FLOAT, \"a2015\" FLOAT);");             
+        //return $query->result();
+    }
 
- 
+    //$$ SELECT c.nombre,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula(c.formula,$arreglo,a.idrepterritorial,e.fechadatoini)	
+    //GROUP BY c.nombre,c.formula,a.idrepterritorial,e.fechadatoini,g.nombre,g.sigla,c.idformula
+    //ORDER BY c.idformula,e.fechadatoini asc $$,
+
+  
 
 
 
 
-//_-------------Anterior
+//_-------------Anterior--------------------------------------------
     public function listaSector() {        
         $query = $this->db->query("
             SELECT f.idfuenteinformacion, rt.idrepterritorial,f.nombre as nombresector, f.idtipofuenteinfo,f.sigla, rt.nombre
@@ -181,7 +248,7 @@ $$ SELECT c.nombre,date_part('year',e.fechadatoini)as fecha,geo.ejecutar_formula
         }else{
             return FALSE;
         }
-    }    
+    }
     public function mtablaReg(){
         
         $datosForm = $this->input->post();

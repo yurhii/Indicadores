@@ -30,6 +30,7 @@
                     <thead style="background-color: #dbdbdb">
                     <th>Sector</th>
                     <th>Indicador</th>
+                    <th>Símbolo</th>
                         <?php
                             foreach ($anios as $value) {
                                 echo '<th>'.$value.'</th>';
@@ -52,7 +53,9 @@
                             $unionindisec = $indisec[$i][0].' '.$indisec[$i][1];
                             if($unionindisec==$value->nombre){
                                 echo '<td>'.$indisec[$i][1].'</td>';
-                                echo '<td>'.$indisec[$i][0].'</td>';
+                                //echo '<td>'.$indisec[$i][0].' <span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
+                                echo '<td>'.$indisec[$i][0].'</td>'; 
+                                echo '<td><span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
                             }                        
                         } ?>
                         

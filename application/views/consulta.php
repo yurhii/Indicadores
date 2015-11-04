@@ -1,4 +1,0 @@
-
-<div id="listaIndicadores">
-    
-</div>

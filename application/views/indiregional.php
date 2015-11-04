@@ -6,6 +6,7 @@
     <div class="panel panel-success" style="border: 1.5px solid; border-color: #4cae4c;">
             <div class="panel-body">
                 <form id="form-sector"> <!--INICIO PAR CARGAR INDICADORES-->
+                    <input type="hidden" name="txtLocalidad" value="Regional">
                   <div style="overflow: auto; height:310px; width: 100%; ">
                       <table class="table table-first-column-number data-table display full">  
                           <thead>
@@ -22,6 +23,7 @@
 		?>
                           <tr>
                               <td>
+                                  
                               <input type="checkbox" name="listaSector[]" value="<?php echo $value->idfuenteinformacion; ?>">
                               </td> 
                               <td>

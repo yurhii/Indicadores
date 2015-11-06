@@ -62,6 +62,7 @@
             <div class="panel-body">
 <!--                <form id="form-indicador">-->
                 <form method="post" action="" target="_blank">
+                    <b><input type="checkbox" name="checktodo">Seleccionar Todo</b>
                     <input type="hidden" name="txtLocalidad" value="Regional">
                   <div style="overflow: auto; height:300px; width: 100%; border: 1px solid; border-color: #337ab7; margin-bottom: 5px;">
                       <!--class="table table-bordered"  -->
@@ -72,8 +73,8 @@
                   </div>
                   <center>                    
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>">Ver Tabla Regional</button>                        
-                        <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/exportExcel')?>">Generar Excel</button>
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>"><span class=" glyphicon glyphicon-search"  ></span>Consultar</button>                        
+                        <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/exportExcel')?>"><span class=" glyphicon glyphicon-download"  ></span>Generar Excel</button>
                     </div>
                   </center>
                 </form>
@@ -94,3 +95,17 @@
     });    
 });
 </script>
+	<script>
+	$(document).ready(function(){
+		$("input[name=checktodo]").change(function(){
+		$('input[class=checkindica]').each(function(){
+			if ($("input[name=checktodo]:checked").length == 1 ) {
+				this.checked=true;
+			}else{
+				this.checked=false;
+			}
+
+		});		
+	});
+});
+	</script>

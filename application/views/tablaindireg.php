@@ -20,7 +20,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'REGIONAL'
+            text: ''
         },
         subtitle: {
             text: 'Valor: Indicadores'
@@ -75,7 +75,7 @@ $(function () {
             type: 'bar'
         },
         title: {
-            text: 'REGIONAL'
+            text: ''
         },
         subtitle: {
             text: 'Valor: Indicadores'

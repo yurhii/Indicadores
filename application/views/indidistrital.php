@@ -61,6 +61,7 @@
             <div class="panel-body">
 <!--                <form id="form-indicador">-->
                 <form method="post" action="" target="_blank">
+                    <input type="hidden" name="txtLocalidad" value="Distrital">
                   <div style="overflow: auto; height:300px; width: 100%; border: 1px solid; border-color: #337ab7; margin-bottom: 5px;">
                       <!--class="table table-bordered"  -->
                     
@@ -70,7 +71,8 @@
                   </div>
                   <center>                    
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>">Ver Tabla Provincial</button>                        
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>">Ver Tabla Provincial</button>
+                        <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/exportExcel')?>">Generar Excel</button>
                     </div>
                   </center>
                 </form>

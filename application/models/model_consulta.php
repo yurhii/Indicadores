@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-//@01   yomaco  19/10/15    agregando session para recuperar parametros y hacer comparacion
-                            //y generara la tabla
-
 class Model_Consulta extends CI_Model {
 
     var $lista = array();

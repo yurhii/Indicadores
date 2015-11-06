@@ -72,8 +72,8 @@
                         </div>                            
                   </div>
                   <center>                    
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>"><span class=" glyphicon glyphicon-search"  ></span>Consultar</button>                        
+                    <div class="btn-block"   role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>"><span class=" glyphicon glyphicon-search"  ></span>Consultar</button>
                         <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/exportExcel')?>"><span class=" glyphicon glyphicon-download"  ></span>Generar Excel</button>
                     </div>
                   </center>
@@ -95,7 +95,7 @@
     });    
 });
 </script>
-	<script>
+<script>
 	$(document).ready(function(){
 		$("input[name=checktodo]").change(function(){
 		$('input[class=checkindica]').each(function(){
@@ -108,4 +108,5 @@
 		});		
 	});
 });
-	</script>
+</script>
+

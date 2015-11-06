@@ -3,7 +3,7 @@
     
 <div class="col-md-5">
          <center>SELECCIONAR SECTOR(ES)</center>
-    <div class="panel panel-success" style="border: 1.5px solid; border-color: #4cae4c;">
+    <div class="panel panel-primary">
             <div class="panel-body">
                 <form id="form-sector"> <!--INICIO PAR CARGAR INDICADORES-->
                     <input type="hidden" name="txtLocalidad" value="Provincial">
@@ -43,7 +43,7 @@
                     
                     <br>
                     <center>
-                        <button type="button" id="btnIndiReg" class="btn btn-success">
+                        <button type="button" id="btnIndiReg" class="btn btn-primary">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             Mostrar Indicadores
                         </button>

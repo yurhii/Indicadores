@@ -6,9 +6,7 @@
         <link href="<?php echo base_url('public/img/favicon.ico')?>" rel="icon" type="image/x-icon" />
         <title>Indicadores 2015</title>
 	<link href="<?php echo base_url('public/css/micss.css') ?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">
-        
+        <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">        
         
         <script src="<?php echo base_url('public/js/bootstrap.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('public/jquery.js') ?>"></script>
@@ -44,10 +42,11 @@
         <img width="100%" src="<?php echo base_url()?>public/img/siar2015.jpg">
             </center>
     
-        <nav class="navbar navbar-default">
-            <div class="container">
-              <div class="navbar-header">
-                <ul class="nav nav-pills"> <!--<ul class="nav navbar-nav">-->
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+<!--              <div class="navbar-header">-->
+                <ul class="nav nav-pills">
+                <!--<ul class="nav navbar-nav"> <ul class="nav navbar-nav">-->
                     <li>                       
                         <a href="<?php echo base_url('indicador')?>">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio
@@ -70,7 +69,7 @@
                     </li>
                   </ul>
               </div>
-            </div>
+            <!--</div>-->
           </nav>    
                 <!-- Contenido de la aplicación -->
         <div class="contenido" id="container">

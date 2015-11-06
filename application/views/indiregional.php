@@ -2,7 +2,7 @@
 <div class="row">
     
 <div class="col-md-5">
-         <center>SELECCIONAR SECTOR(ES)</center>
+    <center><b>SELECCIONAR SECTOR(ES)</b></center>
     <div class="panel panel-primary">
             <div class="panel-body">
                 <form id="form-sector"> <!--INICIO PAR CARGAR INDICADORES-->
@@ -57,7 +57,7 @@
 
     <div class="col-md-7">
 
-        <center>SELECCIONAR INDICADOR(ES)</center>
+        <center><b>SELECCIONAR INDICADOR(ES)</b></center>
         <div class="panel panel-primary" style="border: 1.5px solid; border-color: #337ab7;">  
             <div class="panel-body">
 <!--                <form id="form-indicador">-->

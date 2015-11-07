@@ -7,12 +7,12 @@ class Indicador extends CI_Controller {
         $this->load->model('Model_Consulta');
         
     }
-    public function index()
-    {   
-        $data['contenido'] = 'indicador';        
-	$this->load->view('plantilla', $data);
-    }
-    public function indiregional(){
+//    public function index()
+//    {   
+//        $data['contenido'] = 'indicador';        
+//	$this->load->view('plantilla', $data);
+//    }
+    public function index(){
         $data['contenido'] = 'indiregional';        
         $data['listaSecReg'] = $this->Model_Consulta->listaSecReg();
 	$this->load->view('plantilla', $data);
@@ -70,13 +70,21 @@ class Indicador extends CI_Controller {
     }
     public function exportExcel(){
         
-        $mypost = $this->input->post();
+        $mypost = $this->input->post();        
         if(isset($mypost)){
-            if(isset($_POST['listaIndicador'])){            
-            
-            $localidad = $_POST['txtLocalidad'];
-            
+            if(isset($_POST['listaIndicador'])){
+//            if(isset($_POST['sector'])){
+//                print_r($_POST['sector']);
+//                echo '<br>';
+//                print_r($_POST['indicador']);
+//                echo '<br>';
+//                print_r($_POST['unimedida']);
+//                echo '<br>';
+//                exit;
+                
+            $localidad = $_POST['txtLocalidad'];            
             $datostablaReg = $this->Model_Consulta->datosTablaReg();
+                        
             $this->load->library('libexcel/PHPExcel');
             //Create a new Object
             $objPHPExcel = new PHPExcel();
@@ -190,10 +198,12 @@ class Indicador extends CI_Controller {
             exit();
             
             }else{
-                exit;
+                echo '<center><img width="100%" src="'.base_url('public/img/siar2015.jpg').'"></center>';
+                echo '<br><p class="bg-danger"><b>Error</b>: No existen datos, seleccionar sector y indicador.</p>';
             }
         }else{
-            exit;
+                echo '<center><img width="100%" src="'.base_url('public/img/siar2015.jpg').'"></center>';
+                echo '<br><p class="bg-danger"><b>Error</b>: No existen datos, seleccionar sector y indicador.</p>';
         }
     }
 }

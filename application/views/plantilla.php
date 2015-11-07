@@ -47,13 +47,13 @@
 <!--              <div class="navbar-header">-->
                 <ul class="nav nav-pills">
                 <!--<ul class="nav navbar-nav"> <ul class="nav navbar-nav">-->
-                    <li>                       
-                        <a href="<?php echo base_url('indicador')?>">
+<!--                    <li>                       
+                        <a href="<?php //echo base_url('indicador')?>">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio
                         </a>
-                    </li>
+                    </li>-->
                     <li>
-                        <a href="<?php echo base_url('indicador/indiregional')?>">
+                        <a href="<?php echo base_url('indicador')?>">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Regional
                         </a>
                     </li>

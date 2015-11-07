@@ -158,7 +158,8 @@ $(function () {
                             
                 ?>
                 
-                
+                <form method="post" action="<?php echo base_url('indicador/exportExcel')?>" target="_blank">
+                    
                 <table class="table table-bordered">
                     <?php $anios = array("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015");?>
                     <thead style="background-color: #D9EDF7">
@@ -178,6 +179,7 @@ $(function () {
                     
                           foreach ($datostablaReg as $valued) {                              
                               foreach ($valued as $value) {
+                                  
                               ?>
                     <tr>
                         
@@ -187,9 +189,12 @@ $(function () {
                             $unionindisec = $indisec[$i][0].' '.$indisec[$i][1];
                             if($unionindisec==$value->nombre){
                                 echo '<td>'.$indisec[$i][1].'</td>';
+                                echo '<input type="hidden" name="sector[]" value="'.$indisec[$i][1].'">';
                                 //echo '<td>'.$indisec[$i][0].' <span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
-                                echo '<td>'.$indisec[$i][0].'</td>'; 
+                                echo '<td>'.$indisec[$i][0].'</td>';
+                                echo '<input type="hidden" name="indicador[]" value="'.$indisec[$i][0].'">';
                                 echo '<td><span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
+                                echo '<input type="hidden" name="unimedida[]" value="'.$indisec[$i][2].'">';
                             }                        
                         } ?>
                         
@@ -212,14 +217,9 @@ $(function () {
                     ?>
                     </tbody>
                 </table>
-                <?php
-                
-//                $indisec = $this->session->userdata('indisec');
-//                for ($i = 0; $i < count($indisec); $i++) {
-//                    echo $indisec[$i][0].' | '.$indisec[$i][1].'<br>';
-//                }
-                ?>
-                
+                <input type="submit" class="btn btn-info" value="ver">
+                </form>
+
                 <div id="containeres" style="min-width: 210px; height: 400px; margin: 0 auto"></div>
                 <br>
                 <br>
@@ -239,7 +239,9 @@ $(function () {
             </div>                        
         </div>
     
-
+    
+        
+        
 
         
         <footer>

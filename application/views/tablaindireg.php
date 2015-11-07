@@ -201,64 +201,109 @@ $(function () {
                         } ?>
                     
                         <td>
-                            
+                        <?php if($value->a2005 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
                         <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2005; ?>
                             </span>
                         </center>
+                        <?php }?>
                         </td>
                         
-                        <td><center>
+                        <td>
+                            <?php if($value->a2006 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2006; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td>
+                        <td><?php if($value->a2007 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
                             <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2007; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2008 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2008; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2009 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
+                            
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2009; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2010 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2010; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2011 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2011; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2012 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2012; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2013 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2013; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2014 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2014; ?>
-                                </span></center>
+                                </span></center><?php }?>
                         </td>
-                        <td><center>
+                        <td><?php if($value->a2015 == ''){
+                            echo '<center><span class="label label-default" style="background-color:'.$colores[$cantidad].'; font-size: 13px;"> 0</span></center>';
+                        }else{
+                        ?>
+                        <center>
                             <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
                             <?php echo $value->a2015; ?>
-                            </span></center>
+                            </span></center><?php }?>
                         </td>
                         
                     </tr>

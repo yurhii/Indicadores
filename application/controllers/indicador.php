@@ -144,19 +144,62 @@ class Indicador extends CI_Controller {
                                 $indicador = $indisec[$i][0];                   
                                 $simbolo = $indisec[$i][2];                                
                             }                        
-                        }                   
-                    $a2005 = ($value2->a2005);
+                        }
+                    if(($value2->a2005)==''){
+                        $a2005 = 0;
+                    }else{
+                        $a2005 = ($value2->a2005);
+                    }
+                    if(($value2->a2006)==''){
+                        $a2006 = 0;
+                    }else{
                     $a2006 = ($value2->a2006);
+                    }
+                    if(($value2->a2007)==''){
+                        $a2007 = 0;
+                    }else{
                     $a2007 = ($value2->a2007);
+                    }
+                    if(($value2->a2008)==''){
+                        $a2008 = 0;
+                    }else{
                     $a2008 = ($value2->a2008);
+                    }
+                    if(($value2->a2009)==''){
+                        $a2009 = 0;
+                    }else{
                     $a2009 = ($value2->a2009);
+                    }
+                    if(($value2->a2010)==''){
+                        $a2010 = 0;
+                    }else{
                     $a2010 = ($value2->a2010);
+                    }
+                    if(($value2->a2011)==''){
+                        $a2011 = 0;
+                    }else{
                     $a2011 = ($value2->a2011);
+                    }
+                    if(($value2->a2012)==''){
+                        $a2012 = 0;
+                    }else{
                     $a2012 = ($value2->a2012);
+                    }
+                    if(($value2->a2013)==''){
+                        $a2013 = 0;
+                    }else{
                     $a2013 = ($value2->a2013);
+                    }
+                    if(($value2->a2014)==''){
+                        $a2014 = 0;
+                    }else{
                     $a2014 = ($value2->a2014);
+                    }
+                    if(($value2->a2015)==''){
+                        $a2015 = 0;
+                    }else{
                     $a2015 = ($value2->a2015);
-                    
+                    }
                     $objPHPExcel->getActiveSheet()->setCellValue('B'.$contador, $sector);
                     $objPHPExcel->getActiveSheet()->setCellValue('C'.$contador, $indicador);                    
                     $objPHPExcel->getActiveSheet()->setCellValue('D'.$contador, $simbolo);

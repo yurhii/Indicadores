@@ -158,14 +158,14 @@ $(function () {
                             
                 ?>
                 
-                <form method="post" action="<?php echo base_url('indicador/exportExcel')?>" target="_blank">
+                <!--<form method="post" action="<?php //echo base_url('indicador/exportExcel')?>" target="_blank">-->
                     
                 <table class="table table-bordered">
                     <?php $anios = array("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015");?>
                     <thead style="background-color: #D9EDF7">
                     <th>Sector</th>
                     <th>Indicador</th>
-                    <th>Símbolo</th>
+                    <th>U.Medida</th>
                         <?php
                             foreach ($anios as $value) {
                                 echo '<th>'.$value.'</th>';
@@ -176,7 +176,8 @@ $(function () {
                         
                     <?php    
                     $indisec = $this->session->userdata('indisec');
-                    
+                    $colores = array('#7CB5EC','#434348','#90ED7D','#F7A35C','#8085E9','#F15C80','#E4D354','#2B908F','#F45B5B','#91E8FF');                
+                    $cantidad = 0;
                           foreach ($datostablaReg as $valued) {                              
                               foreach ($valued as $value) {
                                   
@@ -193,32 +194,83 @@ $(function () {
                                 //echo '<td>'.$indisec[$i][0].' <span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
                                 echo '<td>'.$indisec[$i][0].'</td>';
                                 echo '<input type="hidden" name="indicador[]" value="'.$indisec[$i][0].'">';
-                                echo '<td><span class="label label-primary"> '.$indisec[$i][2].' </span></td>';
+                                
+                                echo '<td><center><span style="color:'.$colores[$cantidad].'; font-size: 13px;font-weight: bold;"> '.$indisec[$i][2].' </span></center></td>';
                                 echo '<input type="hidden" name="unimedida[]" value="'.$indisec[$i][2].'">';
                             }                        
                         } ?>
+                    
+                        <td>
+                            
+                        <center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2005; ?>
+                            </span>
+                        </center>
+                        </td>
                         
-                        <td><?php echo $value->a2005; ?></td>
-                        <td><?php echo $value->a2006; ?></td>
-                        <td><?php echo $value->a2007; ?></td>
-                        <td><?php echo $value->a2008; ?></td>
-                        <td><?php echo $value->a2009; ?></td>
-                        <td><?php echo $value->a2010; ?></td>
-                        <td><?php echo $value->a2011; ?></td>
-                        <td><?php echo $value->a2012; ?></td>
-                        <td><?php echo $value->a2013; ?></td>
-                        <td><?php echo $value->a2014; ?></td>
-                        <td><?php echo $value->a2015; ?></td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2006; ?>
+                                </span></center>
+                        </td>
+                        <td>
+                            <center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2007; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2008; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2009; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2010; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2011; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2012; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2013; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2014; ?>
+                                </span></center>
+                        </td>
+                        <td><center>
+                            <span class="label label-default" style="background-color:<?php echo $colores[$cantidad]; ?>; font-size: 13px; ">
+                            <?php echo $value->a2015; ?>
+                            </span></center>
+                        </td>
                         
                     </tr>
                     <?php
+                    $cantidad++;
                           }
                         }
                     ?>
                     </tbody>
                 </table>
-                <input type="submit" class="btn btn-info" value="ver">
-                </form>
+<!--                <input type="submit" class="btn btn-info" value="ver">
+                </form>-->
 
                 <div id="containeres" style="min-width: 210px; height: 400px; margin: 0 auto"></div>
                 <br>

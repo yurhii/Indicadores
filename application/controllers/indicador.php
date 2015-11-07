@@ -109,7 +109,7 @@ class Indicador extends CI_Controller {
             //$objPHPExcel->getActiveSheet()->getColumnDimension('')->setAutoSize(TRUE);
             $objPHPExcel->getActiveSheet()->setCellValue('C3', 'INDICADOR');
             //$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(TRUE);
-            $objPHPExcel->getActiveSheet()->setCellValue('D3', 'U.Med');
+            $objPHPExcel->getActiveSheet()->setCellValue('D3', 'U.Medida');
             $objPHPExcel->getActiveSheet()->setCellValue('E3', '2005');
             $objPHPExcel->getActiveSheet()->setCellValue('F3', '2006');
             $objPHPExcel->getActiveSheet()->setCellValue('G3', '2007');

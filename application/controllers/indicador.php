@@ -35,7 +35,7 @@ class Indicador extends CI_Controller {
         $mypost = $this->input->post();
         if(isset($mypost)){
             if(isset($_POST['listaIndicador'])){            
-            $checkIndi = $_POST['listaIndicador'];            
+            //$checkIndi = $_POST['listaIndicador'];            
             $datostablaReg = $this->Model_Consulta->datosTablaReg();
             
             foreach ($datostablaReg as $value) {
@@ -73,14 +73,6 @@ class Indicador extends CI_Controller {
         $mypost = $this->input->post();        
         if(isset($mypost)){
             if(isset($_POST['listaIndicador'])){
-//            if(isset($_POST['sector'])){
-//                print_r($_POST['sector']);
-//                echo '<br>';
-//                print_r($_POST['indicador']);
-//                echo '<br>';
-//                print_r($_POST['unimedida']);
-//                echo '<br>';
-//                exit;
                 
             $localidad = $_POST['txtLocalidad'];            
             $datostablaReg = $this->Model_Consulta->datosTablaReg();
@@ -251,3 +243,4 @@ class Indicador extends CI_Controller {
     }
 }
 
+/* by facebook.com/ymamanic */

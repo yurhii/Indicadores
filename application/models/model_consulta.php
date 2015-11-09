@@ -180,3 +180,4 @@ class Model_Consulta extends CI_Model {
         return $my_query;
     }
 }
+/* by facebook.com/ymamanic */

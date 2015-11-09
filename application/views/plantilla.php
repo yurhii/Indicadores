@@ -83,8 +83,9 @@
             <center>
                 <h4>                   
                     </h4> &copy; Indicadores - 2015
+                    <!--by facebook.com/ymamanic-->
             </center>
-        </footer>     
+        </footer>
 	<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>
 	<script src="<?php echo base_url('public/js/indicadores.js') ?>"></script>	        
     </body>

@@ -73,7 +73,7 @@
                   </div>
                   <center>                    
                     <div class="btn-block"   role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tablaindireg')?>"><span class=" glyphicon glyphicon-search"  ></span>Consultar</button>
+                        <button type="submit" class="btn btn-primary" dir="<?php echo base_url('indicador/tabla')?>"><span class=" glyphicon glyphicon-search"  ></span>Consultar</button>
                         <button type="submit" class="btn btn-info" dir="<?php echo base_url('indicador/exportExcel')?>"><span class=" glyphicon glyphicon-download"  ></span>Generar Excel</button>
                     </div>
                   </center>

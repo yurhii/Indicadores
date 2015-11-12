@@ -31,7 +31,7 @@ class Indicador extends CI_Controller {
         $datos = $this->Model_Consulta->buscarIndiReg();
         echo json_encode($datos);
     }
-    public function tablaindireg(){      
+    public function tabla(){      
         $mypost = $this->input->post();
         if(isset($mypost)){
             if(isset($_POST['listaIndicador'])){            
@@ -55,17 +55,17 @@ class Indicador extends CI_Controller {
                     $series_data[] = array('name'=>$value2->nombre,'data'=>$valor);
                 }
             }
-            $data['contenido'] = 'tablaindireg';
+            $data['contenido'] = 'tabla';
             $data['series_data'] = json_encode($series_data);
             $data['datostablaReg'] = $datostablaReg;            
-            $this->load->view('tablaindireg', $data);
+            $this->load->view('tabla', $data);
             }else{
                 $data['datostablaReg'] = 'Error';
-                $this->load->view('tablaindireg',$data);
+                $this->load->view('tabla',$data);
             }
         }else{
             $data['datostablaReg'] = 'Error';
-            $this->load->view('tablaindireg',$data);
+            $this->load->view('tabla',$data);
         }
     }
     public function exportExcel(){

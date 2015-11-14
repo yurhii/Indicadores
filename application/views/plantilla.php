@@ -7,7 +7,7 @@
         <title>Indicadores 2015</title>
 	<link href="<?php echo base_url('public/css/micss.css') ?>" rel="stylesheet" media="screen">
         <link href="<?php echo base_url('public/css/bootstrap.css') ?>" rel="stylesheet" media="screen">        
-        
+        <script src="<?php echo base_url()?>public/js/jquery-1.11.3.js"></script>
         <script src="<?php echo base_url('public/js/bootstrap.js') ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('public/jquery.js') ?>"></script>
         <script src="<?php echo base_url('public/js/jquery.dataTables.min.js')?>"></script>
@@ -86,7 +86,7 @@
                     <!--by facebook.com/ymamanic-->
             </center>
         </footer>
-	<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>
+	<!--<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>-->
 	<script src="<?php echo base_url('public/js/indicadores.js') ?>"></script>	        
     </body>
 </html>

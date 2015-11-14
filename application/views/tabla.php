@@ -11,7 +11,10 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="<?php echo base_url('public/highcharts/js/highcharts.js')?>"></script>
         <script src="<?php echo base_url('public/highcharts/js/modules/exporting.js')?>"></script>
+       <!-- <script src="<?php echo base_url('public/js/jquery-2.0.2.js') ?>"></script>        -->
+        <script src="<?php echo base_url('public/js/jquery.PrintArea.js') ?>"></script>        
         
+
 
         
     </head>
@@ -19,13 +22,16 @@
         
         
         
-    <center>
+        <div id="printme"><center>
         <img width="100%" src="<?php echo base_url()?>public/img/siar2015.jpg">
     </center>
+        
     <br>
     <br>
         
-        <div class="contenido" id="container">            
+        <div class="contenido" id="container">       
+           
+            <br>
             <div class="col-md-12">
                	<?php                
                     if($datostablaReg!='Error'){
@@ -35,7 +41,7 @@
                 
                 
                     
-                <table class="table table-bordered">
+                <table class="table table-bordered" border="1">
                     <?php $anios = array("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015");?>
                     <thead style="background-color: #D9EDF7">
                     
@@ -188,8 +194,8 @@
                     ?>
                     </tbody>
                 </table>
-                                
-                                
+                <div class="pull-right" ><button  id="imprimir" class="btn btn-sm"  title="Imprimir"><span class="glyphicon glyphicon-print"></span></button></div>
+                                        
                 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                    
                     <div class="modal-dialog" role="document">                                        
@@ -214,7 +220,7 @@
                 ?>
             </div>                        
         </div>
-
+        </div>
         <footer>
             <center>
                 <h4>                   
@@ -288,5 +294,19 @@
         };
     });
 </script>
+<!--<script>
 
+$('#imprimir').click(function(){
 
+    window.print();
+    return false;
+});
+</script>-->
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#imprimir").click(function () {
+        $("#printme").printArea();
+        
+    });
+});
+</script>

@@ -13,10 +13,12 @@
         <script src="<?php echo base_url('public/js/jquery.dataTables.min.js')?>"></script>
         <script src="<?php echo base_url('public/js/jquery.dataTables.bootstrap.js')?>"></script>
 
-                
+    <script type="text/javascript">
+        var url = "<?php echo $url; ?>";        
+     </script>   
 
 <script type="text/javascript">
-    
+        
     $(function(){
        $('table.data-table.full').dataTable( {
             "iDisplayLength": 50,
@@ -57,6 +59,7 @@
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Regional
                         </a>
                     </li>
+                    
                     <li>
                         <a href="<?php echo base_url('indicador/indiprovincial')?>" >
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Provincial
@@ -69,7 +72,7 @@
                     </li>
                   </ul>
               </div>
-            <!--</div>-->
+            </div>
           </nav>    
                 <!-- Contenido de la aplicación -->
         <div class="contenido" id="container">
@@ -83,7 +86,7 @@
             <center>
                 <h4>                   
                     </h4> &copy; Indicadores - 2015
-                    <!--by facebook.com/ymamanic-->
+                   
             </center>
         </footer>
 	<!--<script src="<?php echo base_url();?>public/js/jquery-1.11.3.js"></script>-->

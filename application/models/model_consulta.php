@@ -47,7 +47,7 @@ class Model_Consulta extends CI_Model {
     }
 
     public function buscarIndiReg(){
-        if(isset($_POST['listaSector'])){
+        if(($_POST['listaSector'])!= NULL){
             $datosForm = $this->input->post();//recuperando datos del formulario para mostrar indicadores
             //cargar lista de sectores seleccionados
             $valor = $_POST['listaSector'];            

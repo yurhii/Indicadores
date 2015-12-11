@@ -13,16 +13,22 @@ class Indicador extends CI_Controller {
 //	$this->load->view('plantilla', $data);
 //    }
     public function index(){
+        $this->load->helper('url');
+	$data['url'] = base_url();
         $data['contenido'] = 'indiregional';        
         $data['listaSecReg'] = $this->Model_Consulta->listaSecReg();
 	$this->load->view('plantilla', $data);
     }
     public function indiprovincial(){
+        $this->load->helper('url');
+	$data['url'] = base_url();
         $data['contenido'] = 'indiprovincial';        
         $data['listaSecPro'] = $this->Model_Consulta->listaSecPro();
 	$this->load->view('plantilla', $data);
     }
     public function indidistrital(){
+        $this->load->helper('url');
+	$data['url'] = base_url();
         $data['contenido'] = 'indidistrital';        
         $data['listaSecDis'] = $this->Model_Consulta->listaSecDis();
 	$this->load->view('plantilla', $data);

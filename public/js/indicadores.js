@@ -7,16 +7,16 @@ function inicio(){
 }
 
 function listarIndiReg(){
-    $.ajax({
-       url:"http://localhost:8080/indicadores/indicador/buscarindireg",
+       $.ajax({
+       url: url + "indicador/buscarindireg",
         type: 'POST',
         data: $("#form-sector").serialize(),
         success:function(respuesta){
         //alert(respuesta);        
             var registros = eval(respuesta);
-            //alert(registros[0]['sigla']);
-            
-            if(registros != ''){
+          //alert(registros[0]['sigla']);
+          
+            if(registros !== ''){
                 
                 html ="<table class='table table-hover'>";                   
                 html +="<tbody>";
